@@ -13,6 +13,9 @@
   "author": "RNTDesign - Renato Andrade",
   "license": "ISC",
   "dependencies": {
+    "@apollo/react-hooks": "^3.0.1",
+    "apollo-boost": "^0.4.4",
+    "graphql": "^14.5.4",
     "isomorphic-fetch": "^2.2.1",
     "next": "^9.0.4",
     "react": "^16.9.0",
