@@ -1,0 +1,39 @@
+.language {
+    padding-left: 2rem;
+
+    >.container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        >.item {
+            list-style: none;
+
+            &:first-child {
+                &:after {
+                    content: "/";
+                    margin: 0 5px;
+                    cursor: default;
+                    font-family: 'Red Hat Display', sans-serif;
+                    font-weight: 400;
+                    font-size: 10px;
+                    opacity: .5;
+                }
+            }
+
+            >.link {
+                text-decoration: none;
+                color: white;
+                font-family: 'Red Hat Display', sans-serif;
+                font-weight: 400;
+                font-size: 12px;
+
+                &.-active {
+                    color: white;
+                    position: relative;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}

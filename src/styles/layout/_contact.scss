@@ -1,0 +1,69 @@
+.contact {
+    display: flex;
+    padding-top: 10rem;
+    align-items: center;
+    justify-content: space-around;
+    min-height: calc(100vh - 84px);
+    @media #{$mq-tablet} {
+        flex-direction: column;
+    }
+    > .info {
+        // flex: 1;
+        > .title {
+            color: $green;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        a {
+          color: $green;
+        }
+
+        p {
+          margin: 1rem 0;
+          display: block;
+        }
+
+        > .item {
+            margin: 1rem 0;
+
+            > .icon {
+                margin-right: 10px;
+                color: $green;
+            }
+
+            > .text {
+                color: white;
+            }
+        }
+    }
+
+    > .form {
+        width: 400px;
+        @media #{$mq-mobile-h} {
+            width: 100%;
+        }
+    }
+}
+
+.list-contact {
+    display: flex;
+    padding: 2rem;
+    align-items: initial;
+    justify-content: space-between;
+
+    .phones, .emails {
+        width: 50%;
+    }
+
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+        article {
+            padding: 1rem;
+            p {
+                margin: 10px 0
+            }
+        }
+    }
+}

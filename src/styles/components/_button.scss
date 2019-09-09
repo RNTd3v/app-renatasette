@@ -1,0 +1,36 @@
+.button {
+    width: 100%;
+    background: none;
+    padding: 1rem;
+    color: $green;
+    border: 1px solid $green;
+    transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    cursor: pointer;
+    &:hover {
+        background-color: $green;
+        color: white;
+    }
+
+    &.-center {
+        width: 200px;
+        margin: 50px auto 0;
+    }
+
+    &.-disabled {
+        opacity: .5;
+        cursor: default;
+        &:hover {
+            background: none;
+            color: $green;
+            border: 1px solid $green;
+        }
+    }
+
+    &.-small {
+        width: auto;
+        padding: .5rem;
+        margin-top: 10px;
+        max-width: 150px;
+        text-align: center;
+    }
+}

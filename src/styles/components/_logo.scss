@@ -1,0 +1,27 @@
+.logo {
+    a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+
+        @media #{$mq-tablet} {
+            margin-bottom: 20px;
+        }
+
+        span {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            font-weight: $light;
+
+            strong {
+                font-weight: $bold;
+            }
+        }
+
+        small {
+            font-size: .8rem;
+            letter-spacing: .11rem;
+        }
+    }
+}
