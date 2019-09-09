@@ -5,8 +5,9 @@ import Head from "next/head";
 
 // Components
 import Header from "../src/components/Header";
-import Carousel from "../src/components/Carousel";
-import Footer from "../src/components/footer";
+import Slider from "../src/components/Slider";
+import Category from "../src/components/Category";
+import Footer from "../src/components/Footer";
 
 const Home = () => (
   <div>
@@ -16,7 +17,8 @@ const Home = () => (
     <section>
       <Header />
       <main className="content">
-        <Carousel />
+        <Slider />
+        <Category name="Branded Content & Entertainment" />
       </main>
       <Footer />
     </section>
