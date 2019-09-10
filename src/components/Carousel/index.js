@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 
+import Picture from '../Picture';
+
 class Carousel extends Component {
   render() {
     const settings = {
@@ -17,8 +19,7 @@ class Carousel extends Component {
       <Slider {...settings}>
         {works.map((w, i) => (
           <div className="work" key={i}>
-            <img src={w.picture} alt={w.namePT} />
-            <div className="subtitle">{w.namePT}</div>
+            <Picture src={w.picture} title={w.namePT} text={w.descriptionPT} link="" />
           </div>
         ))}
       </Slider>

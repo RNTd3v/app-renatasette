@@ -66,19 +66,12 @@
       margin: 0 10px;
       position: relative;
 
-      >img {
+      .picture {
         height: 100%;
-        opacity: .5;
-      }
-
-      .subtitle {
-        position: absolute;
-        bottom: 40px;
-        left: 40px;
-        z-index: 1;
-        text-transform: uppercase;
-        font-size: 14px;
-        font-weight: $light;
+        > .image {
+          height: 100%;
+          opacity: .5;
+        }
       }
     }
 

@@ -7,10 +7,10 @@ import Works from "../../mocks/works.js";
 
 class Category extends Component {
   render() {
-    const { name, id, theme } = this.props;
+    const { name, id} = this.props;
     const works = Works.filter(w => w.categoryID === id);
     return (
-      <section className={`category -${theme}`}>
+      <section className={`category`}>
         <h1 className="title">
           <Link href="/">
             <a>{name}</a>
