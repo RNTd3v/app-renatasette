@@ -1,6 +1,12 @@
 .category {
+  &.-light {
+    background-color: #2B2C2C;
+  }
+
+  padding: 5rem 0;
+
   >.title {
-    padding: 5rem;
+    padding-bottom: 5rem;
     text-align: center;
 
     >a {
@@ -12,6 +18,7 @@
   }
 
   .category-slider {
+
     .work {
       height: 400px;
       margin: 0 10px;

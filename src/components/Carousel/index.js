@@ -4,32 +4,23 @@ import Slider from "react-slick";
 class Carousel extends Component {
   render() {
     const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
-      speed: 500,
+      speed: 300,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      centerMode: false,
+      variableWidth: true
     };
+    const { works } = this.props;
     return (
-      <Slider {...settings} className="mainSlider">
-        <div className="work">
-          <img src="/static/img/renata-photo-1.jpg" />
-          <div className="subtitle">
-            <span className="number">/ 01</span> Legenda
+      <Slider {...settings}>
+        {works.map((w, i) => (
+          <div className="work" key={i}>
+            <img src={w.picture} alt={w.namePT} />
+            <div className="subtitle">{w.namePT}</div>
           </div>
-        </div>
-        <div className="work">
-          <img src="/static/img/renata-photo-2.jpg" />
-          <div className="subtitle">
-            <span className="number">/ 02</span> Legenda
-          </div>
-        </div>
-        <div className="work">
-          <img src="/static/img/renata-photo-3.jpg" />
-          <div className="subtitle">
-            <span className="number">/ 03</span> Legenda
-          </div>
-        </div>
+        ))}
       </Slider>
     );
   }

@@ -1,4 +1,10 @@
 .mainSlider {
+
+  .slick-prev,
+  .slick-next {
+    display: none !important;
+  }
+
   .work {
     width: 100%;
     height: 100vh;
