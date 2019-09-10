@@ -18,6 +18,10 @@ class Category extends Component {
         </h1>
         <div className="category-slider">
           <Carousel works={works}></Carousel>
+          <div className="line"></div>
+          <Link href="/">
+            <a className="link">ver mais</a>
+          </Link>
         </div>
       </section>
     );
