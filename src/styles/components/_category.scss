@@ -1,5 +1,5 @@
 .category {
-  &.-light {
+  &:nth-child(odd) {
     background-color: #2B2C2C;
   }
 
