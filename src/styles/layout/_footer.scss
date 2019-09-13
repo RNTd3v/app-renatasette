@@ -4,10 +4,22 @@
     padding-top: 4rem;
     padding-bottom: 1rem;
 
+    @media #{$mq-mobile-h} {
+        padding-top: 2rem;
+    }
+
     >.contacts {
         display: flex;
         justify-content: space-between;
         padding-bottom: 2rem;
+
+        @media #{$mq-mobile-h} {
+            flex-direction: column;
+
+            >* {
+                margin-bottom: 20px;
+            }
+        }
 
         .title {
             font-weight: $bold;
@@ -21,6 +33,10 @@
             color: #727070;
             font-size: 1rem;
             text-decoration: none;
+
+            @media #{$mq-mobile-h} {
+                font-size: 1.2rem;
+            }
         }
 
     }
@@ -28,6 +44,10 @@
     >.bottom {
         padding-top: 2rem;
         border-top: 1px solid rgba(130, 128, 128, .2);
+
+        @media #{$mq-mobile-h} {
+            padding-top: 1rem;
+        }
 
         >.text {
             text-transform: uppercase;

@@ -40,6 +40,10 @@
             width: 100%;
             height: 40%;
 
+            @media #{$mq-tablet-h} {
+                height: auto;
+            }
+
             >.title {
                 -webkit-transform: translate3d(0, 40px, 0);
                 transform: translate3d(0, 40px, 0);
@@ -47,6 +51,11 @@
                 transition: transform 0.35s;
                 font-size: 18px;
                 text-transform: uppercase;
+
+                @media #{$mq-tablet-h} {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
             }
 
             >.text {
@@ -58,6 +67,12 @@
                 transition: opacity 0.2s, transform 0.35s;
                 font-size: 14px;
                 margin-top: 5px;
+
+                @media #{$mq-tablet-h} {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                    opacity: 1;
+                }
             }
         }
     }

@@ -1,13 +1,13 @@
 .logo {
+    &.-isMobile {
+        padding-left: 4rem;
+    }
+
     a {
         color: white;
         text-decoration: none;
         display: flex;
         flex-direction: column;
-
-        @media #{$mq-tablet} {
-            margin-bottom: 20px;
-        }
 
         span {
             font-size: 1.5rem;

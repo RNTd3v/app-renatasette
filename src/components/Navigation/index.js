@@ -1,8 +1,8 @@
 import React from "react";
 import ActiveLink from "../../utils/ActiveLink";
 
-const Navigation = ({ language = "en" }) => (
-  <div className="nav">
+const Navigation = ({ language = "en", isMobile }) => (
+  <div className={`nav ${isMobile ? "-mobile" : ""}`}>
     <nav className="menu">
       <ul>
         <li>

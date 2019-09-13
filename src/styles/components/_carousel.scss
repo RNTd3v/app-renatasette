@@ -30,6 +30,10 @@
       display: flex;
       align-items: center;
 
+      @media #{$mq-tablet} {
+        display: none;
+      }
+
       >.number {
         font-weight: 900;
         font-size: 14px;
