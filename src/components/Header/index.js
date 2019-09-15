@@ -14,14 +14,11 @@ class Header extends Component {
       scrolled: false,
       isMobile: false
     };
+    this.onScroll = this.onScroll.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", e => {
-      this.setState({
-        scrolled: e.currentTarget.pageYOffset > window.outerHeight
-      });
-    });
+    window.addEventListener("scroll", e => this.onScroll(e), false);
     if (window.outerWidth <= 1024) {
       this.setState({
         isMobile: true
@@ -30,8 +27,15 @@ class Header extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll");
+    window.removeEventListener("scroll", e => this.onScroll(e), false);
   }
+
+  onScroll = e => {
+    this.setState({
+      scrolled: e.currentTarget.pageYOffset > window.outerHeight
+    });
+  };
+
   render() {
     const { scrolled, isMobile } = this.state;
     return (
