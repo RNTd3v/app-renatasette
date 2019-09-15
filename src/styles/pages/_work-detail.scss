@@ -1,0 +1,26 @@
+.work-detail {
+  width: 100%;
+  padding-top: 70px;
+
+  .top {
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    >.title {
+      color: #858383;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    >.text {
+      margin: 2rem 0;
+      font-size: 1rem;
+      font-weight: 100;
+      color: #858383;
+      align-self: flex-start;
+    }
+  }
+}

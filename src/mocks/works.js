@@ -1,5 +1,6 @@
 const Works = [
   {
+    id: "1",
     categoryID: "1",
     code: "foto-um",
     namePT: "Foto 1",
@@ -7,6 +8,7 @@ const Works = [
     picture: "/static/img/photo1.jpg"
   },
   {
+    id: "2",
     categoryID: "1",
     code: "foto-dois",
     namePT: "Foto 2",
@@ -14,6 +16,7 @@ const Works = [
     picture: "/static/img/photo2.jpg"
   },
   {
+    id: "3",
     categoryID: "1",
     code: "foto-tres",
     namePT: "Foto 3",
@@ -21,6 +24,7 @@ const Works = [
     picture: "/static/img/photo3.jpg"
   },
   {
+    id: "4",
     categoryID: "1",
     code: "foto-quatro",
     namePT: "Foto 4",
@@ -28,6 +32,7 @@ const Works = [
     picture: "/static/img/photo4.jpg"
   },
   {
+    id: "5",
     categoryID: "1",
     code: "foto-cinco",
     namePT: "Foto 5",
@@ -35,6 +40,7 @@ const Works = [
     picture: "/static/img/photo5.jpg"
   },
   {
+    id: "6",
     categoryID: "2",
     code: "foto-seis",
     namePT: "Foto 6",
@@ -42,6 +48,7 @@ const Works = [
     picture: "/static/img/photo8.jpeg"
   },
   {
+    id: "7",
     categoryID: "2",
     code: "foto-sete",
     namePT: "Foto 7",
@@ -49,6 +56,7 @@ const Works = [
     picture: "/static/img/photo7.jpg"
   },
   {
+    id: "8",
     categoryID: "2",
     code: "foto-oito",
     namePT: "Foto 8",
@@ -56,6 +64,7 @@ const Works = [
     picture: "/static/img/photo6.jpg"
   },
   {
+    id: "9",
     categoryID: "2",
     code: "foto-nove",
     namePT: "Foto 9",
@@ -63,6 +72,7 @@ const Works = [
     picture: "/static/img/photo9.jpeg"
   },
   {
+    id: "10",
     categoryID: "2",
     code: "foto-dez",
     namePT: "Foto 10",
@@ -70,6 +80,7 @@ const Works = [
     picture: "/static/img/photo10.jpg"
   },
   {
+    id: "11",
     categoryID: "3",
     code: "foto-doze",
     namePT: "Foto 12",
@@ -77,6 +88,7 @@ const Works = [
     picture: "/static/img/photo12.jpg"
   },
   {
+    id: "12",
     categoryID: "3",
     code: "foto-treze",
     namePT: "Foto 13",
@@ -84,6 +96,7 @@ const Works = [
     picture: "/static/img/photo13.jpg"
   },
   {
+    id: "13",
     categoryID: "3",
     code: "foto-quatorze",
     namePT: "Foto 14",
@@ -91,6 +104,7 @@ const Works = [
     picture: "/static/img/photo14.jpg"
   },
   {
+    id: "14",
     categoryID: "3",
     code: "foto-quinze",
     namePT: "Foto 15",
@@ -98,6 +112,7 @@ const Works = [
     picture: "/static/img/photo15.jpg"
   },
   {
+    id: "15",
     categoryID: "4",
     code: "foto-dezesseis",
     namePT: "Foto 16",
@@ -105,6 +120,7 @@ const Works = [
     picture: "/static/img/photo16.jpg"
   },
   {
+    id: "16",
     categoryID: "4",
     code: "foto-dezessete",
     namePT: "Foto 17",
@@ -112,6 +128,7 @@ const Works = [
     picture: "/static/img/photo17.jpg"
   },
   {
+    id: "17",
     categoryID: "4",
     code: "foto-dezoito",
     namePT: "Foto 18",
@@ -119,6 +136,7 @@ const Works = [
     picture: "/static/img/photo18.jpg"
   },
   {
+    id: "18",
     categoryID: "4",
     code: "foto-dezenove",
     namePT: "Foto 19",

@@ -5,8 +5,6 @@ import Picture from "../Picture";
 const Gallery = ({ works }) => {
   const oddWorks = works.filter((w, i) => i % 2 === 0);
   const evenWorks = works.filter((w, i) => i % 2 === 1);
-  console.log(oddWorks);
-  console.log(evenWorks);
   return (
     <div className="gallery">
       <div className="col-left">
