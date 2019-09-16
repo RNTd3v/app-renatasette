@@ -11,6 +11,7 @@ import ProjectMock from "../src/mocks/projects";
 
 const Projects = () => {
   const projects = ProjectMock;
+  console.log(projects);
   return (
     <div>
       <Head>
@@ -21,7 +22,7 @@ const Projects = () => {
         <main className="content project-list">
           <h1 className="title">Projects</h1>
           <div className="list">
-            {projects.map((p, i) => {
+            {projects.map((p, i) => (
               <div className="item" key={i}>
                 <div className="picture">
                   <img src={p.picture} alt={p.nameEN} />
@@ -36,8 +37,8 @@ const Projects = () => {
                     ver mais
                   </Link>
                 </div>
-              </div>;
-            })}
+              </div>
+            ))}
           </div>
         </main>
         <Footer />
