@@ -9,6 +9,21 @@
     flex-direction: column;
     align-items: center;
 
+    @media #{$mq-tablet-h} {
+      width: 90%;
+    }
+
+    iframe {
+
+      @media #{$mq-tablet} {
+        height: 300px;
+      }
+
+      @media #{$mq-mobile-h} {
+        height: 200px;
+      }
+    }
+
     >.title {
       color: #858383;
       margin: 2rem 0;
