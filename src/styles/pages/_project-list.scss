@@ -19,6 +19,10 @@
     flex-direction: column;
     align-items: center;
 
+    @media #{$mq-desktop-h} {
+      width: 1200px;
+    }
+
     @media #{$mq-tablet-h} {
       width: 90%;
     }

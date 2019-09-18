@@ -21,7 +21,7 @@ class Category extends Component {
     }
   }
   render() {
-    const { name, id } = this.props;
+    const { name, id, language, code } = this.props;
     const { isMobile } = this.state;
     const works = Works.filter(w => w.categoryID === id);
     return (
@@ -36,22 +36,43 @@ class Category extends Component {
             <>
               {works.slice(0, 2).map((w, i) => (
                 <div className="work" key={i}>
-                  <Picture
-                    src={w.picture}
-                    title={w.namePT}
-                    text={w.descriptionPT}
-                    link=""
-                  />
+                  {language === "en" ? (
+                    <Picture
+                      src={w.picture}
+                      title={w.nameEN}
+                      text={w.descriptionEN}
+                      link={w.codeEN}
+                    />
+                  ) : (
+                    <Picture
+                      src={w.picture}
+                      title={w.namePT}
+                      text={w.descriptionPT}
+                      link={w.codePT}
+                    />
+                  )}
                 </div>
               ))}
             </>
           ) : (
-            <Carousel works={works}></Carousel>
+            <Carousel works={works} language={language}></Carousel>
           )}
           <div className="line"></div>
-          <Link href="/">
-            <a className="link">ver mais</a>
-          </Link>
+          {language === "en" ? (
+            <Link
+              href="/works/[categoryCode]"
+              as={`/works/${code}`}
+            >
+              <a className="link">view more</a>
+            </Link>
+          ) : (
+            <Link
+              href="/trabalhos/[categoryCode]"
+              as={`/trabalhos/${code}`}
+            >
+              <a className="link">ver mais</a>
+            </Link>
+          )}
         </div>
       </section>
     );

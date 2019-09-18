@@ -16,7 +16,8 @@ $mq-mobile-h:"(max-width:600px)";
 $mq-tablet:"(max-width:780px)";
 $mq-tablet-h:"(max-width:1024px)";
 $mq-desktop:"(max-width:1280px)";
-$mq-desktop-h:"(max-width:1400px)";
+$mq-desktop-h:"(min-width:1281px)";
+$mq-desktop-large:"(min-width:1441px)";
 
 $mq-height-q:"(max-height:500px)";
 $mq-height-s:"(max-height:600px)";

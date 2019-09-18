@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 
-import Picture from '../Picture';
+import Picture from "../Picture";
 
 class Carousel extends Component {
   render() {
@@ -14,12 +14,26 @@ class Carousel extends Component {
       centerMode: false,
       variableWidth: true
     };
-    const { works } = this.props;
+    const { works, language } = this.props;
     return (
       <Slider {...settings}>
         {works.map((w, i) => (
           <div className="work" key={i}>
-            <Picture src={w.picture} title={w.namePT} text={w.descriptionPT} link="" />
+            {language === "en" ? (
+              <Picture
+                src={w.picture}
+                title={w.nameEN}
+                text={w.descriptionEN}
+                link={w.codeEN}
+              />
+            ) : (
+              <Picture
+                src={w.picture}
+                title={w.namePT}
+                text={w.descriptionPT}
+                link={w.codePT}
+              />
+            )}
           </div>
         ))}
       </Slider>

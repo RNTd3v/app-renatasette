@@ -38,7 +38,7 @@ const WorksPageByCategory = () => {
             link={featuredMedia.codeEN}
             text={featuredMedia.descriptionEN}
             title={category.nameEN}
-            language="pt"
+            language="en"
           />
           <Gallery works={works} language="en" />
         </main>

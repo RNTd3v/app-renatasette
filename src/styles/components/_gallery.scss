@@ -5,6 +5,10 @@
   display: flex;
   flex-wrap: wrap;
 
+  @media #{$mq-desktop-h} {
+    width: 1200px;
+  }
+
   @media #{$mq-tablet-h} {
     width: 90%;
     padding: 2rem 0 0;

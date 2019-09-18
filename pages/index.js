@@ -27,7 +27,7 @@ const Home = () => (
       <main className="content">
         <Slider language="en" />
         {category.map((c, i) => (
-          <Category name={c.nameEN} id={c.id} key={i} />
+          <Category name={c.nameEN} id={c.id} key={i} language="en" code={c.codeEN} />
         ))}
       </main>
       <Footer language="en" />

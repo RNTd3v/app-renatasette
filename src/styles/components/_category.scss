@@ -40,6 +40,10 @@
       bottom: -43px;
       z-index: 1;
 
+      @media #{$mq-desktop-h} {
+        width: 1200px;
+      }
+
       >li {
         height: 3px;
         margin: 0;
@@ -116,6 +120,10 @@
       background: white;
       margin: 40px auto;
       opacity: 0;
+
+      @media #{$mq-desktop-h} {
+        width: 1200px;
+      }
 
       @media #{$mq-tablet-h} {
         width: 100%;
