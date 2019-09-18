@@ -13,7 +13,7 @@ import CategoryMock from "../src/mocks/category.js";
 
 const category = CategoryMock;
 
-const Home = () => (
+const Principal = () => (
   <div>
     <Head>
       <title>Renata Sette</title>
@@ -23,31 +23,16 @@ const Home = () => (
       <meta property="og:title" content="Renata Sette" />
     </Head>
     <section>
-      <Header language="en" pagePT="/principal" pageEN="/" />
+      <Header language="pt" pagePT="/principal" pageEN="/" />
       <main className="content">
-        <Slider language="en" />
+        <Slider language="pt" />
         {category.map((c, i) => (
-          <Category name={c.nameEN} id={c.id} key={i} />
+          <Category name={c.namePT} id={c.id} key={i} />
         ))}
       </main>
-      <Footer language="en" />
+      <Footer language="pt" />
     </section>
   </div>
 );
 
-export default Home;
-
-/*
-
-import withData from "../lib/apollo";
-import User from "../components/Users";
-
-export default withData(props => {
-  return (
-    <div>
-      <User />
-    </div>
-  );
-});
- 
-*/
+export default Principal;

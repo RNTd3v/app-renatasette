@@ -1,10 +1,10 @@
 import React from "react";
 
-const Footer = () => (
+const Footer = ({ language }) => (
   <footer className="footer">
     <div className="contacts">
       <div className="item -address">
-        <h2 className="title">Studio</h2>
+        <h2 className="title">{language === "en" ? "Address" : "Endereço"}</h2>
         <p className="text">Rua nome da rua, 123</p>
       </div>
       <div className="item -address">
@@ -14,8 +14,8 @@ const Footer = () => (
         </a>
       </div>
       <div className="item -address">
-        <h2 className="title">Telefone</h2>
-        <p className="text">(11) 11111-1111</p>
+        <h2 className="title">{language === "en" ? "Phone" : "Telefone"}</h2>
+        <p className="text">{language === "en" ? "+55" : ""} (11) 11111-1111</p>
       </div>
     </div>
     <div className="bottom">

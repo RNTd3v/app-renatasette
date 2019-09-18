@@ -1,39 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
 
-class SliderHome extends Component {
-  render() {
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      autoplay: true
-    };
-    return (
-      <Slider {...settings} className="mainSlider">
-        <div className="work">
-          <img src="/static/img/renata-photo-1.jpg" />
-          <div className="subtitle">
-            <span className="number">/ 01</span> Legenda
-          </div>
-        </div>
-        <div className="work">
-          <img src="/static/img/renata-photo-2.jpg" />
-          <div className="subtitle">
-            <span className="number">/ 02</span> Legenda
-          </div>
-        </div>
-        <div className="work">
-          <img src="/static/img/renata-photo-3.jpg" />
-          <div className="subtitle">
-            <span className="number">/ 03</span> Legenda
-          </div>
-        </div>
-      </Slider>
-    );
-  }
-}
+import SliderMock from "../../mocks/slider";
 
-export default SliderHome;
+export default function SliderHome(props) {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true
+  };
+  const slider = SliderMock;
+  const { language } = props;
+  return (
+    <Slider {...settings} className="mainSlider">
+      {slider.map((s, i) => (
+        <div className="work" key={i}>
+          <img src={s.picture} />
+          <div className="subtitle">
+            <span className="number">/ 0{i + 1}</span>{" "}
+            {language === "en" ? s.titleEN : s.titlePT}
+          </div>
+        </div>
+      ))}
+    </Slider>
+  );
+}

@@ -1,30 +1,34 @@
 const CategoryMock = [
   {
     id: "1",
-    code: "branded-content-entertainment",
-    namePT: "Branded Content & Entertainment",
+    codePT: "conteudo-de-marca-e-entretenimento",
+    codeEN: "branded-content-and-entertainment",
+    namePT: "Conteúdo de marca e entretenimento",
     nameEN: "Branded Content & Entertainment",
     icon: ""
   },
   {
     id: "2",
-    code: "publicidade",
+    codePT: "publicidade",
+    codeEN: "publicity",
     namePT: "Publicidade",
-    nameEN: "Publicidade",
+    nameEN: "Publicity",
     icon: ""
   },
   {
     id: "3",
-    code: "documentarios",
+    codePT: "documentarios",
+    codeEN: "documentaries",
     namePT: "Documentários",
-    nameEN: "Documentários",
+    nameEN: "Documentaries",
     icon: ""
   },
   {
     id: "4",
-    code: "ficcao",
+    codePT: "ficcao",
+    codeEN: "fiction",
     namePT: "Ficção",
-    nameEN: "Ficção",
+    nameEN: "Fiction",
     icon: ""
   }
 ];

@@ -14,10 +14,10 @@ import Footer from "../../src/components/Footer";
 import Works from "../../src/mocks/works.js";
 import Media from "../../src/mocks/media.js";
 
-const WorkPage = () => {
+const TrabalhoPage = () => {
   const router = useRouter();
   const { workCode } = router.query;
-  const work = Works.filter(w => w.codeEN === workCode)[0];
+  const work = Works.filter(w => w.codePT === workCode)[0];
   const medias = Media.filter(m => m.workID === work.id);
 
   const video = medias[0];
@@ -65,15 +65,15 @@ const WorkPage = () => {
   return (
     <div>
       <Head>
-        <title>Renata Sette - {work.nameEN}</title>
-        <meta name="description" content={work.descriptionEN} />
+        <title>Renata Sette - {work.namePT}</title>
+        <meta name="description" content={work.descriptionPT} />
         <meta property="og:image" content={work.picture} />
-        <meta property="og:description" content={work.descriptionEN} />
-        <meta property="og:title" content={work.nameEN} />
+        <meta property="og:description" content={work.descriptionPT} />
+        <meta property="og:title" content={work.namePT} />
       </Head>
       <section>
         <Header
-          language="en"
+          language="pt"
           pagePT="/trabalho/[workCode]"
           asPT={`/trabalho/${work.codePT}`}
           pageEN="/work/[workCode]"
@@ -82,7 +82,7 @@ const WorkPage = () => {
         />
         <main className="content work-detail">
           <div className="top">
-            <h1 className="title">{work.nameEN}</h1>
+            <h1 className="title">{work.namePT}</h1>
             <Vimeo
               video={video.url}
               width={wPlayVimeoTop}
@@ -90,7 +90,7 @@ const WorkPage = () => {
               showTitle={false}
               showPortrait={false}
             />
-            <p className="text">{work.descriptionEN}</p>
+            <p className="text">{work.descriptionPT}</p>
           </div>
           <div className="gallery">
             <div className="col-left">
@@ -138,10 +138,10 @@ const WorkPage = () => {
             sources={onlyMedias}
           />
         </main>
-        <Footer language="en" />
+        <Footer language="pt" />
       </section>
     </div>
   );
 };
 
-export default WorkPage;
+export default TrabalhoPage;

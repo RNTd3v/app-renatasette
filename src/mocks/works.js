@@ -2,15 +2,21 @@ const Works = [
   {
     id: "1",
     categoryID: "1",
-    code: "foto-um",
+    codePT: "foto-um",
+    codeEN: "photo-one",
     namePT: "Foto 1",
+    nameEN: "Photo 1",
     descriptionPT: "Descrição 1",
+    descriptionEN: "Description 1",
     picture: "/static/img/photo1.jpg"
   },
   {
     id: "2",
     categoryID: "1",
-    code: "foto-dois",
+    codePT: "foto-dois",
+    codeEN: "photo-two",
+    nameEN: "Photo 2",
+    descriptionEN: "Description 2",
     namePT: "Foto 2",
     descriptionPT: "Descrição 2",
     picture: "/static/img/photo2.jpg"
@@ -18,7 +24,10 @@ const Works = [
   {
     id: "3",
     categoryID: "1",
-    code: "foto-tres",
+    codePT: "foto-tres",
+    codeEN: "photo-three",
+    nameEN: "Photo 3",
+    descriptionEN: "Description 3",
     namePT: "Foto 3",
     descriptionPT: "Descrição 3",
     picture: "/static/img/photo3.jpg"
@@ -26,7 +35,10 @@ const Works = [
   {
     id: "4",
     categoryID: "1",
-    code: "foto-quatro",
+    codePT: "foto-quatro",
+    codeEN: "photo-four",
+    nameEN: "Photo 4",
+    descriptionEN: "Description 4",
     namePT: "Foto 4",
     descriptionPT: "Descrição 4",
     picture: "/static/img/photo4.jpg"
@@ -34,7 +46,10 @@ const Works = [
   {
     id: "5",
     categoryID: "1",
-    code: "foto-cinco",
+    codePT: "foto-cinco",
+    codeEN: "photo-five",
+    nameEN: "Photo 5",
+    descriptionEN: "Description 5",
     namePT: "Foto 5",
     descriptionPT: "Descrição 5",
     picture: "/static/img/photo5.jpg"
@@ -42,7 +57,10 @@ const Works = [
   {
     id: "6",
     categoryID: "2",
-    code: "foto-seis",
+    codePT: "foto-seis",
+    codeEN: "photo-six",
+    nameEN: "Photo 6",
+    descriptionEN: "Description 6",
     namePT: "Foto 6",
     descriptionPT: "Descrição 6",
     picture: "/static/img/photo8.jpeg"
@@ -50,7 +68,10 @@ const Works = [
   {
     id: "7",
     categoryID: "2",
-    code: "foto-sete",
+    codePT: "foto-sete",
+    codeEN: "photo-seven",
+    nameEN: "Photo 7",
+    descriptionEN: "Description 7",
     namePT: "Foto 7",
     descriptionPT: "Descrição 7",
     picture: "/static/img/photo7.jpg"
@@ -58,7 +79,10 @@ const Works = [
   {
     id: "8",
     categoryID: "2",
-    code: "foto-oito",
+    codePT: "foto-oito",
+    codeEN: "photo-eight",
+    nameEN: "Photo 8",
+    descriptionEN: "Description 8",
     namePT: "Foto 8",
     descriptionPT: "Descrição 8",
     picture: "/static/img/photo6.jpg"
@@ -66,7 +90,10 @@ const Works = [
   {
     id: "9",
     categoryID: "2",
-    code: "foto-nove",
+    codePT: "foto-nove",
+    codeEN: "photo-nine",
+    nameEN: "Photo 9",
+    descriptionEN: "Description 9",
     namePT: "Foto 9",
     descriptionPT: "Descrição 9",
     picture: "/static/img/photo9.jpeg"
@@ -74,7 +101,10 @@ const Works = [
   {
     id: "10",
     categoryID: "2",
-    code: "foto-dez",
+    codePT: "foto-dez",
+    codeEN: "photo-ten",
+    nameEN: "Photo 10",
+    descriptionEN: "Description 10",
     namePT: "Foto 10",
     descriptionPT: "Descrição 10",
     picture: "/static/img/photo10.jpg"
@@ -82,7 +112,10 @@ const Works = [
   {
     id: "11",
     categoryID: "3",
-    code: "foto-doze",
+    codePT: "foto-doze",
+    codeEN: "photo-twelve",
+    nameEN: "Photo 12",
+    descriptionEN: "Description 12",
     namePT: "Foto 12",
     descriptionPT: "Descrição 12",
     picture: "/static/img/photo12.jpg"
@@ -90,7 +123,10 @@ const Works = [
   {
     id: "12",
     categoryID: "3",
-    code: "foto-treze",
+    codePT: "foto-treze",
+    codeEN: "photo-thirteen",
+    nameEN: "Photo 13",
+    descriptionEN: "Description 13",
     namePT: "Foto 13",
     descriptionPT: "Descrição 13",
     picture: "/static/img/photo13.jpg"
@@ -98,7 +134,10 @@ const Works = [
   {
     id: "13",
     categoryID: "3",
-    code: "foto-quatorze",
+    codePT: "foto-quatorze",
+    codeEN: "photo-fourteen",
+    nameEN: "Photo 14",
+    descriptionEN: "Description 14",
     namePT: "Foto 14",
     descriptionPT: "Descrição 14",
     picture: "/static/img/photo14.jpg"
@@ -106,7 +145,10 @@ const Works = [
   {
     id: "14",
     categoryID: "3",
-    code: "foto-quinze",
+    codePT: "foto-quinze",
+    codeEN: "photo-fifteen",
+    nameEN: "Photo 15",
+    descriptionEN: "Description 15",
     namePT: "Foto 15",
     descriptionPT: "Descrição 15",
     picture: "/static/img/photo15.jpg"
@@ -114,7 +156,10 @@ const Works = [
   {
     id: "15",
     categoryID: "4",
-    code: "foto-dezesseis",
+    codePT: "foto-dezesseis",
+    codeEN: "photo-sixteen",
+    nameEN: "Photo 16",
+    descriptionEN: "Description 16",
     namePT: "Foto 16",
     descriptionPT: "Descrição 16",
     picture: "/static/img/photo16.jpg"
@@ -122,7 +167,10 @@ const Works = [
   {
     id: "16",
     categoryID: "4",
-    code: "foto-dezessete",
+    codePT: "foto-dezessete",
+    codeEN: "photo-seventeen",
+    nameEN: "Photo 17",
+    descriptionEN: "Description 17",
     namePT: "Foto 17",
     descriptionPT: "Descrição 17",
     picture: "/static/img/photo17.jpg"
@@ -130,7 +178,10 @@ const Works = [
   {
     id: "17",
     categoryID: "4",
-    code: "foto-dezoito",
+    codePT: "foto-dezoito",
+    codeEN: "photo-eighteen",
+    nameEN: "Photo 18",
+    descriptionEN: "Description 18",
     namePT: "Foto 18",
     descriptionPT: "Descrição 18",
     picture: "/static/img/photo18.jpg"
@@ -138,7 +189,10 @@ const Works = [
   {
     id: "18",
     categoryID: "4",
-    code: "foto-dezenove",
+    codePT: "foto-dezenove",
+    codeEN: "photo-nineteen",
+    nameEN: "Photo 19",
+    descriptionEN: "Description 19",
     namePT: "Foto 19",
     descriptionPT: "Descrição 19",
     picture: "/static/img/photo19.jpg"

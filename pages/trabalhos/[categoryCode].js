@@ -12,20 +12,20 @@ import Footer from "../../src/components/Footer";
 import CategoryMock from "../../src/mocks/category.js";
 import Works from "../../src/mocks/works.js";
 
-const WorksPageByCategory = () => {
+const TrabalhosPageByCategory = () => {
   const router = useRouter();
   const { categoryCode } = router.query;
-  const category = CategoryMock.filter(c => c.codeEN === categoryCode)[0];
+  const category = CategoryMock.filter(c => c.codePT === categoryCode)[0];
   const works = Works.filter(w => w.categoryID === category.id);
   const featuredMedia = works[0];
   return (
     <div>
       <Head>
-        <title>Renata Sette - {category.nameEN}</title>
+        <title>Renata Sette - {category.namePT}</title>
       </Head>
       <section>
         <Header
-          language="en"
+          language="pt"
           pagePT="/trabalhos/[categoryCode]"
           asPT={`/trabalhos/${category.codePT}`}
           pageEN="/works/[categoryCode]"
@@ -35,17 +35,17 @@ const WorksPageByCategory = () => {
         <main className="content">
           <FeaturedMedia
             src={featuredMedia.picture}
-            link={featuredMedia.codeEN}
-            text={featuredMedia.descriptionEN}
-            title={category.nameEN}
+            link={featuredMedia.codePT}
+            text={featuredMedia.descriptionPT}
+            title={category.namePT}
             language="pt"
           />
-          <Gallery works={works} language="en" />
+          <Gallery works={works} language="pt" />
         </main>
-        <Footer language="en" />
+        <Footer language="pt" />
       </section>
     </div>
   );
 };
 
-export default WorksPageByCategory;
+export default TrabalhosPageByCategory;
