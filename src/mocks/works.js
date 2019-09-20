@@ -1,7 +1,7 @@
 const Works = [
   {
     id: "1",
-    categoryID: "1",
+    categoryID: "5d82b68d5768daa37da186a0",
     codePT: "foto-um",
     codeEN: "photo-one",
     namePT: "Foto 1",
@@ -12,7 +12,7 @@ const Works = [
   },
   {
     id: "2",
-    categoryID: "1",
+    categoryID: "5d82b68d5768daa37da186a0",
     codePT: "foto-dois",
     codeEN: "photo-two",
     nameEN: "Photo 2",
@@ -23,7 +23,7 @@ const Works = [
   },
   {
     id: "3",
-    categoryID: "1",
+    categoryID: "5d82b68d5768daa37da186a0",
     codePT: "foto-tres",
     codeEN: "photo-three",
     nameEN: "Photo 3",
@@ -34,7 +34,7 @@ const Works = [
   },
   {
     id: "4",
-    categoryID: "1",
+    categoryID: "5d82b68d5768daa37da186a0",
     codePT: "foto-quatro",
     codeEN: "photo-four",
     nameEN: "Photo 4",
@@ -45,7 +45,7 @@ const Works = [
   },
   {
     id: "5",
-    categoryID: "1",
+    categoryID: "5d82b68d5768daa37da186a0",
     codePT: "foto-cinco",
     codeEN: "photo-five",
     nameEN: "Photo 5",
@@ -56,7 +56,7 @@ const Works = [
   },
   {
     id: "6",
-    categoryID: "2",
+    categoryID: "5d82b6f557b495a3b9830057",
     codePT: "foto-seis",
     codeEN: "photo-six",
     nameEN: "Photo 6",
@@ -67,7 +67,7 @@ const Works = [
   },
   {
     id: "7",
-    categoryID: "2",
+    categoryID: "5d82b6f557b495a3b9830057",
     codePT: "foto-sete",
     codeEN: "photo-seven",
     nameEN: "Photo 7",
@@ -78,7 +78,7 @@ const Works = [
   },
   {
     id: "8",
-    categoryID: "2",
+    categoryID: "5d82b6f557b495a3b9830057",
     codePT: "foto-oito",
     codeEN: "photo-eight",
     nameEN: "Photo 8",
@@ -89,7 +89,7 @@ const Works = [
   },
   {
     id: "9",
-    categoryID: "2",
+    categoryID: "5d82b6f557b495a3b9830057",
     codePT: "foto-nove",
     codeEN: "photo-nine",
     nameEN: "Photo 9",
@@ -100,7 +100,7 @@ const Works = [
   },
   {
     id: "10",
-    categoryID: "2",
+    categoryID: "5d82b6f557b495a3b9830057",
     codePT: "foto-dez",
     codeEN: "photo-ten",
     nameEN: "Photo 10",
@@ -111,7 +111,7 @@ const Works = [
   },
   {
     id: "11",
-    categoryID: "3",
+    categoryID: "5d82b71157b495a3b9830058",
     codePT: "foto-doze",
     codeEN: "photo-twelve",
     nameEN: "Photo 12",
@@ -122,7 +122,7 @@ const Works = [
   },
   {
     id: "12",
-    categoryID: "3",
+    categoryID: "5d82b71157b495a3b9830058",
     codePT: "foto-treze",
     codeEN: "photo-thirteen",
     nameEN: "Photo 13",
@@ -133,7 +133,7 @@ const Works = [
   },
   {
     id: "13",
-    categoryID: "3",
+    categoryID: "5d82b71157b495a3b9830058",
     codePT: "foto-quatorze",
     codeEN: "photo-fourteen",
     nameEN: "Photo 14",
@@ -144,7 +144,7 @@ const Works = [
   },
   {
     id: "14",
-    categoryID: "3",
+    categoryID: "5d82b71157b495a3b9830058",
     codePT: "foto-quinze",
     codeEN: "photo-fifteen",
     nameEN: "Photo 15",
@@ -155,7 +155,7 @@ const Works = [
   },
   {
     id: "15",
-    categoryID: "4",
+    categoryID: "5d82b73f57b495a3b9830059",
     codePT: "foto-dezesseis",
     codeEN: "photo-sixteen",
     nameEN: "Photo 16",
@@ -166,7 +166,7 @@ const Works = [
   },
   {
     id: "16",
-    categoryID: "4",
+    categoryID: "5d82b73f57b495a3b9830059",
     codePT: "foto-dezessete",
     codeEN: "photo-seventeen",
     nameEN: "Photo 17",
@@ -177,7 +177,7 @@ const Works = [
   },
   {
     id: "17",
-    categoryID: "4",
+    categoryID: "5d82b73f57b495a3b9830059",
     codePT: "foto-dezoito",
     codeEN: "photo-eighteen",
     nameEN: "Photo 18",
@@ -188,7 +188,7 @@ const Works = [
   },
   {
     id: "18",
-    categoryID: "4",
+    categoryID: "5d82b73f57b495a3b9830059",
     codePT: "foto-dezenove",
     codeEN: "photo-nineteen",
     nameEN: "Photo 19",

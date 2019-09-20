@@ -3,36 +3,32 @@ import "../src/styles/main.scss";
 
 import Head from "next/head";
 
+import withData from "../src/lib/apollo";
+
 // Components
 import Header from "../src/components/Header";
 import Slider from "../src/components/Slider";
-import Category from "../src/components/Category";
+import Categories from "../src/components/Categories";
 import Footer from "../src/components/Footer";
 
-import CategoryMock from "../src/mocks/category.js";
-
-const category = CategoryMock;
-
-const Principal = () => (
-  <div>
-    <Head>
-      <title>Renata Sette</title>
-      <meta name="description" content="Website Renata Sette" />
-      <meta property="og:image" content="" />
-      <meta property="og:description" content="" />
-      <meta property="og:title" content="Renata Sette" />
-    </Head>
-    <section>
-      <Header language="pt" pagePT="/principal" pageEN="/" />
-      <main className="content">
-        <Slider language="pt" />
-        {category.map((c, i) => (
-          <Category name={c.namePT} id={c.id} key={i} language="pt" code={c.codePT}  />
-        ))}
-      </main>
-      <Footer language="pt" />
-    </section>
-  </div>
-);
-
-export default Principal;
+export default withData(_ => {
+  return (
+    <>
+      <Head>
+        <title>Renata Sette</title>
+        <meta name="description" content="Website Renata Sette" />
+        <meta property="og:image" content="" />
+        <meta property="og:description" content="" />
+        <meta property="og:title" content="Renata Sette" />
+      </Head>
+      <section>
+        <Header language="pt" pagePT="/principal" pageEN="/" />
+        <main className="content">
+          <Slider language="pt" />
+          <Categories language="pt" />
+        </main>
+        <Footer language="pt" />
+      </section>
+    </>
+  );
+});

@@ -1,9 +1,24 @@
 import React from "react";
 import Slider from "react-slick";
+import Link from "next/link";
 
-import SliderMock from "../../mocks/slider";
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
-export default function SliderHome(props) {
+const GET_SLIDER = gql`
+  query {
+    slider {
+      titlePT
+      titleEN
+      linkPT
+      linkEN
+      picture
+      id
+    }
+  }
+`;
+
+export default function SliderHome({ language }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -12,19 +27,35 @@ export default function SliderHome(props) {
     slidesToScroll: 1,
     autoplay: true
   };
-  const slider = SliderMock;
-  const { language } = props;
-  return (
-    <Slider {...settings} className="mainSlider">
-      {slider.map((s, i) => (
-        <div className="work" key={i}>
-          <img src={s.picture} />
-          <div className="subtitle">
-            <span className="number">/ 0{i + 1}</span>{" "}
-            {language === "en" ? s.titleEN : s.titlePT}
+  const { loading, error, data, fetchMore } = useQuery(GET_SLIDER);
+  if (data && data.slider) {
+    return (
+      <Slider {...settings} className="mainSlider">
+        {data.slider.map((s, i) => (
+          <div className="work" key={i}>
+            {language === "en" ? (
+              <Link href="/work/[workCode]" as={`/work/${s.linkEN}`}>
+                <figure>
+                  <img src={s.picture} />
+                  <div className="subtitle">
+                    <span className="number">/ 0{i + 1}</span> {s.titleEN}
+                  </div>
+                </figure>
+              </Link>
+            ) : (
+              <Link href="/trabalho/[workCode]" as={`/trabalho/${s.linkPT}`}>
+                <figure>
+                  <img src={s.picture} />
+                  <div className="subtitle">
+                    <span className="number">/ 0{i + 1}</span> {s.titlePT}
+                  </div>
+                </figure>
+              </Link>
+            )}
           </div>
-        </div>
-      ))}
-    </Slider>
-  );
+        ))}
+      </Slider>
+    );
+  }
+  return <div>Loading...</div>;
 }
