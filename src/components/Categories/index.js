@@ -3,6 +3,8 @@ import gql from "graphql-tag";
 
 import Category from "../Category";
 
+import Loading from "../Loading";
+
 const GET_CATEGORIES = gql`
   query {
     categories {
@@ -42,7 +44,7 @@ function Categories({ language }) {
       </>
     );
   }
-  return <div>Loading...</div>;
+  return <Loading />;
 }
 
 export default Categories;

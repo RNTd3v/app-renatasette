@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
+import Loading from "../Loading";
+
 const GET_SLIDER = gql`
   query {
     slider {
@@ -57,5 +59,5 @@ export default function SliderHome({ language }) {
       </Slider>
     );
   }
-  return <div>Loading...</div>;
+  return <Loading />;
 }
