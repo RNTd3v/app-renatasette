@@ -3,33 +3,58 @@ import Link from "next/link";
 
 import Carousel from "../Carousel";
 import Picture from "../Picture";
+import Loading from "../Loading";
 
-import Works from "../../mocks/works.js";
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
-class Category extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isMobile: false
-    };
-  }
-  componentDidMount() {
-    if (window.outerWidth <= 1024) {
-      this.setState({
-        isMobile: true
-      });
+const GET_WORKS_FROM_A_CATEGORY = gql`
+  query worksByCategory($categoryID: ID!) {
+    worksByCategory(categoryID: $categoryID) {
+      namePT
+      nameEN
+      codePT
+      codeEN
+      descriptionPT
+      descriptionEN
+      picture
+      id
     }
   }
-  render() {
-    const { name, id, language, code } = this.props;
-    const { isMobile } = this.state;
-    const works = Works.filter(w => w.categoryID === id);
+`;
+
+export default function Category({
+  language,
+  categoryID,
+  categoryNamePT,
+  categoryNameEN,
+  categoryCodePT,
+  categoryCodeEN
+}) {
+  const isMobile = window.outerWidth <= 1024;
+
+  const { data, loading, error } = useQuery(GET_WORKS_FROM_A_CATEGORY, {
+    variables: { categoryID }
+  });
+  if (loading) return <Loading />;
+  if (error) return <p>ERROR: {error.message}</p>;
+  if (data && data.worksByCategory) {
+    const works = data.worksByCategory;
     return (
-      <section className={`category`}>
+      <>
         <h1 className="title">
-          <Link href="/">
-            <a>{name}</a>
-          </Link>
+          {language === "en" ? (
+            <Link href="/works/[categoryCode]" as={`/works/${categoryCodeEN}`}>
+              <a>{categoryNameEN}</a>
+            </Link>
+          ) : (
+            <Link
+              href="/trabalhos/[categoryCode]"
+              as={`/trabalhos/${categoryCodePT}`}
+            >
+              <a>{categoryNamePT}</a>
+            </Link>
+          )}
         </h1>
         <div className="category-slider">
           {isMobile ? (
@@ -59,24 +84,20 @@ class Category extends Component {
           )}
           <div className="line"></div>
           {language === "en" ? (
-            <Link
-              href="/works/[categoryCode]"
-              as={`/works/${code}`}
-            >
+            <Link href="/works/[categoryCode]" as={`/works/${categoryCodeEN}`}>
               <a className="link">view more</a>
             </Link>
           ) : (
             <Link
               href="/trabalhos/[categoryCode]"
-              as={`/trabalhos/${code}`}
+              as={`/trabalhos/${categoryCodePT}`}
             >
               <a className="link">ver mais</a>
             </Link>
           )}
         </div>
-      </section>
+      </>
     );
   }
+  return <Loading />;
 }
-
-export default Category;

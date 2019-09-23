@@ -1,17 +1,37 @@
 import React from "react";
 
-const SocialMedia = () => (
-  <div className="socialmedia">
-    <a className="item" href="" target="_blank">
-      <i className="fab fa-linkedin"></i>
-    </a>
-    <a className="item" href="" target="_blank">
-      <i className="fab fa-instagram"></i>
-    </a>
-    <a className="item" href="" target="_blank">
-      <i className="fab fa-facebook"></i>
-    </a>
-  </div>
-);
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
-export default SocialMedia;
+const GET_SOCIAL_MEDIA = gql`
+  query {
+    socialMedia {
+      id
+      name
+      url
+      icon
+    }
+  }
+`;
+
+export default function SocialMedia() {
+  const { loading, error, data, fetchMore } = useQuery(GET_SOCIAL_MEDIA);
+  if (data && data.socialMedia) {
+    return (
+      <div className="socialmedia">
+        {data.socialMedia.map((s, i) => (
+          <a
+            className="item"
+            href={s.url}
+            target="_blank"
+            title={`Renata Sette - ${s.name}`}
+            key={i}
+          >
+            <i className={s.icon}></i>
+          </a>
+        ))}
+      </div>
+    );
+  }
+  return <></>;
+}

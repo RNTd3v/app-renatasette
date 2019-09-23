@@ -32,7 +32,7 @@ export default function Header(props) {
   return (
     <header className={`header ${scrolled ? "-scrolled" : ""}`}>
       {isMobile ? <MenuMobile /> : null}
-      <Logo isMobile={isMobile} />
+      <Logo isMobile={isMobile} language={language} />
       {!isMobile ? <Navigation language={language} /> : null}
       <div className="another">
         {!isMobile ? <SocialMedia /> : null}

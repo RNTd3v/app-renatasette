@@ -2,6 +2,14 @@
   width: 100%;
   padding-top: 70px;
 
+  .no-content {
+    width: 100%;
+    height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .top {
     width: 80vw;
     margin: 0 auto;

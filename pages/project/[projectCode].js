@@ -14,9 +14,9 @@ import WorkMedias from "../../src/components/WorkMedias";
 import Loading from "../../src/components/Loading";
 import Footer from "../../src/components/Footer";
 
-const GET_WORK_FROM_CODE = gql`
-  query workByCodeEN($codeEN: String!) {
-    workByCodeEN(codeEN: $codeEN) {
+const GET_PROJECT_FROM_CODE = gql`
+  query projectByCodeEN($codeEN: String!) {
+    projectByCodeEN(codeEN: $codeEN) {
       id
       nameEN
       codePT
@@ -29,37 +29,37 @@ const GET_WORK_FROM_CODE = gql`
 
 export default withData(_ => {
   const router = useRouter();
-  const { workCode } = router.query;
+  const { projectCode } = router.query;
 
-  const { data, loading, error } = useQuery(GET_WORK_FROM_CODE, {
-    variables: { codeEN: workCode }
+  const { data, loading, error } = useQuery(GET_PROJECT_FROM_CODE, {
+    variables: { codeEN: projectCode }
   });
   console.log(data);
   if (loading) return <Loading />;
   if (error) return <p>ERROR: {error.message}</p>;
-  if (data && data.workByCodeEN) {
-    const work = data.workByCodeEN;
+  if (data && data.projectByCodeEN) {
+    const project = data.projectByCodeEN;
 
     return (
       <div>
         <Head>
-          <title>Renata Sette - {work.nameEN}</title>
-          <meta name="description" content={work.descriptionEN} />
-          <meta property="og:image" content={work.picture} />
-          <meta property="og:description" content={work.descriptionEN} />
-          <meta property="og:title" content={work.nameEN} />
+          <title>Renata Sette - {project.nameEN}</title>
+          <meta name="description" content={project.descriptionEN} />
+          <meta property="og:image" content={project.picture} />
+          <meta property="og:description" content={project.descriptionEN} />
+          <meta property="og:title" content={project.nameEN} />
         </Head>
         <section>
           <Header
             language="en"
-            pagePT="/trabalho/[workCode]"
-            asPT={`/trabalho/${work.codePT}`}
-            pageEN="/work/[workCode]"
-            asEN={`/work/${work.codeEN}`}
+            pagePT="/projeto/[projectCode]"
+            asPT={`/projeto/${project.codePT}`}
+            pageEN="/project/[projectCode]"
+            asEN={`/project/${project.codeEN}`}
             isDynamic={true}
           />
           <main className="content work-detail">
-            <WorkMedias work={work} language="en" />
+            <WorkMedias work={project} language="en" />
           </main>
           <Footer language="en" />
         </section>

@@ -2,13 +2,14 @@
     width: 100%;
     background: none;
     padding: 1rem;
-    color: $green;
-    border: 1px solid $green;
+    color: white;
+    border: 1px solid $secondaryColor;
     transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
     cursor: pointer;
+
     &:hover {
-        background-color: $green;
-        color: white;
+        background-color: $secondaryColor;
+        color: $mainColor;
     }
 
     &.-center {
@@ -19,10 +20,11 @@
     &.-disabled {
         opacity: .5;
         cursor: default;
+
         &:hover {
             background: none;
-            color: $green;
-            border: 1px solid $green;
+            color: white;
+            border: 1px solid $secondaryColor;
         }
     }
 

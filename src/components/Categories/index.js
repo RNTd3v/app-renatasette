@@ -23,23 +23,23 @@ function Categories({ language }) {
     return (
       <>
         {data.categories.map((c, i) => (
-          <span key={i}>
+          <section key={i} className="category">
             {language === "en" ? (
               <Category
-                name={c.nameEN}
-                id={c.id}
                 language="en"
-                code={c.codeEN}
+                categoryID={c.id}
+                categoryNameEN={c.nameEN}
+                categoryCodeEN={c.codeEN}
               />
             ) : (
               <Category
-                name={c.namePT}
-                id={c.id}
                 language="pt"
-                code={c.codePT}
+                categoryID={c.id}
+                categoryNamePT={c.namePT}
+                categoryCodePT={c.codePT}
               />
             )}
-          </span>
+          </section>
         ))}
       </>
     );
