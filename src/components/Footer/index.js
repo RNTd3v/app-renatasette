@@ -24,7 +24,7 @@ const GET_CONTACT = gql`
 
 export default function Footer({ language }) {
   const { data, loading, error } = useQuery(GET_CONTACT);
-  if (data && data.contacts) {
+  if (data && data.contacts && data.contacts.length > 0) {
     const contact = data.contacts[0];
     return (
       <footer className="footer">

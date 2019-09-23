@@ -29,16 +29,16 @@ export default function Category({
   categoryNamePT,
   categoryNameEN,
   categoryCodePT,
-  categoryCodeEN
+  categoryCodeEN,
+  isMobile
 }) {
-  const isMobile = window.outerWidth <= 1024;
-
+  
   const { data, loading, error } = useQuery(GET_WORKS_FROM_A_CATEGORY, {
     variables: { categoryID }
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR: {error.message}</p>;
-  if (data && data.worksByCategory) {
+  if (data && data.worksByCategory && data.worksByCategory.length > 0) {
     const works = data.worksByCategory;
     return (
       <>

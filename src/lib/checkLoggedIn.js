@@ -1,19 +1,19 @@
 import gql from "graphql-tag";
 import cookie from "cookie";
 
-export default function loggedInUser() {
+export default function loggedInUser(context) {
   const cookies = cookie.parse(
-    req ? req.headers.cookie || "" : document.cookie
+    context.req ? context.req.headers.cookie || "" : document.cookie
   );
 
-  console.log(document.cookie);
+  console.log(cookies);
 
   const user = {
     id: cookies.userID,
     name: cookies.userName
   };
 
-  return cookies.userID;
+  return user;
 }
 /*apolloClient
     .query({

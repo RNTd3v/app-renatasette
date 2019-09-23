@@ -17,7 +17,7 @@ const GET_CATEGORIES = gql`
   }
 `;
 
-function Categories({ language }) {
+function Categories({ language, isMobile }) {
   const { loading, error, data, fetchMore } = useQuery(GET_CATEGORIES);
   if (data && data.categories) {
     return (
@@ -30,6 +30,7 @@ function Categories({ language }) {
                 categoryID={c.id}
                 categoryNameEN={c.nameEN}
                 categoryCodeEN={c.codeEN}
+                isMobile={isMobile}
               />
             ) : (
               <Category
@@ -37,6 +38,7 @@ function Categories({ language }) {
                 categoryID={c.id}
                 categoryNamePT={c.namePT}
                 categoryCodePT={c.codePT}
+                isMobile={isMobile}
               />
             )}
           </section>

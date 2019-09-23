@@ -37,12 +37,10 @@ const LoginAdminPage = () => {
 };
 
 LoginAdminPage.getInitialProps = async context => {
-  const { loggedInUser } = await checkLoggedIn;
-  console.log(loggedInUser);
+  const loggedInUser = checkLoggedIn(context);
+  console.log(loggedInUser)
 
-  if (loggedInUser) {
-    // Already signed in? No need to continue.
-    // Throw them back to the main page
+  if (loggedInUser.id) {
     redirect(context, "/admin");
   }
 

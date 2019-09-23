@@ -8,13 +8,20 @@ import "../../src/styles/main.scss";
 
 import Logo from "../../src/components/Logo";
 
-const IndexAdminPage = ({ loggedInUser }) => {
+const IndexAdminPage = ({ userName }) => {
   const apolloClient = useApolloClient();
 
   const signout = () => {
     document.cookie = cookie.serialize("token", "", {
       maxAge: -1 // Expire the cookie immediately
     });
+    document.cookie = cookie.serialize("userID", "", {
+      maxAge: -1 // Expire the cookie immediately
+    });
+    document.cookie = cookie.serialize("userName", "", {
+      maxAge: -1 // Expire the cookie immediately
+    });
+    
 
     // Force a reload of all the current queries now that the user is
     // logged in, so we don't accidentally leave any state around.
@@ -26,21 +33,21 @@ const IndexAdminPage = ({ loggedInUser }) => {
 
   return (
     <div>
-      Hello {loggedInUser.user.name}!<br />
+      Hello {userName}!<br />
       <button onClick={signout}>Sign out</button>
     </div>
   );
 };
 
 IndexAdminPage.getInitialProps = async context => {
-  const { loggedInUser } = await checkLoggedIn;
+  
+  const loggedInUser = checkLoggedIn(context);
 
-  if (!loggedInUser) {
-    // If not signed in, send them somewhere more useful
+  if (!loggedInUser.id) {
     redirect(context, "/admin/login");
   }
 
-  return { loggedInUser };
+  return {userName: loggedInUser.name };
 };
 
 export default withApollo(IndexAdminPage);

@@ -1,17 +1,25 @@
 import React from "react";
+
 import "../src/styles/main.scss";
 
 import Head from "next/head";
+import dynamic from "next/dynamic";
 
 import withData from "../src/lib/apollo";
 
+import detectMobile from "../src/utils/DetectMobile";
+
 // Components
-import Header from "../src/components/Header";
-import Slider from "../src/components/Slider";
+const Header = dynamic(() => import("../src/components/Header"), {
+  ssr: false
+});
+// const Categories= dynamic(() => import("../src/components/Categories"), { ssr: false }) ;
 import Categories from "../src/components/Categories";
+import Slider from "../src/components/Slider";
 import Footer from "../src/components/Footer";
 
-export default withData(_ => {
+const IndexPage = ({isMobile}) => {
+  console.log(isMobile);
   return (
     <>
       <Head>
@@ -25,10 +33,22 @@ export default withData(_ => {
         <Header language="en" pagePT="/principal" pageEN="/" />
         <main className="content">
           <Slider language="en" />
-          <Categories language="en" />
+          <Categories language="en" isMobile={isMobile} />
         </main>
         <Footer language="en" />
       </section>
     </>
   );
-});
+};
+
+IndexPage.getInitialProps = async (context) => {
+  let isMobile;
+  if (context.req) {
+    isMobile = detectMobile(context.req.headers['user-agent']);
+  } else {
+    isMobile = detectMobile(window.navigator.userAgent);
+  }
+  return {isMobile}
+};
+
+export default withData(IndexPage);
