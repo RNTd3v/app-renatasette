@@ -6,8 +6,6 @@ export default function loggedInUser(context) {
     context.req ? context.req.headers.cookie || "" : document.cookie
   );
 
-  console.log(cookies);
-
   const user = {
     id: cookies.userID,
     name: cookies.userName

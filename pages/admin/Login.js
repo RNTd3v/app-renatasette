@@ -38,7 +38,6 @@ const LoginAdminPage = () => {
 
 LoginAdminPage.getInitialProps = async context => {
   const loggedInUser = checkLoggedIn(context);
-  console.log(loggedInUser)
 
   if (loggedInUser.id) {
     redirect(context, "/admin");
