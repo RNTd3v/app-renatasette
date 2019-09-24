@@ -52,6 +52,7 @@
         flex: 1;
         min-height: calc(100vh - 4rem);
         padding: 5rem;
+        overflow-y: scroll;
 
         >.title {
             text-align: center;

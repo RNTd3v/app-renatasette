@@ -11,6 +11,7 @@ import checkLoggedIn from "../../../../src/lib/checkLoggedIn";
 import "../../../../src/styles/main.scss";
 
 import AdminHeader from "../../../../src/components/AdminHeader";
+import AdminWorksByCategoryID from "../../../../src/components/AdminWorksByCategoryID";
 import Loading from "../../../../src/components/Loading";
 
 const GET_CATEGORY_BY_ID = gql`
@@ -36,9 +37,8 @@ const WorksAdminPage = () => {
       <section className="admin">
         <AdminHeader showButtonBack={true} route={"/admin"} />
         <main className="main">
-          <h1 className="title">
-            Lista dos trabalhos da categoria {category.namePT}
-          </h1>
+          <h1 className="title">{category.namePT}</h1>
+          <AdminWorksByCategoryID categoryID={categoryID} />
         </main>
       </section>
     );

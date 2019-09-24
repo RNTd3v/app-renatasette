@@ -1,33 +1,47 @@
 @mixin afterText {
-    content: '';
-    width: 0;
-    height: 2px;
-    background-color: $green;
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    margin-left: -10px;
-    transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: $secondaryColor;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -10px;
+  transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
 @mixin afterTextHover {
-    width: 20px;
+  width: 20px;
 }
 
 @mixin for-phone-only {
-  @media (max-width: 599px) { @content; }
+  @media (max-width: 599px) {
+    @content;
+  }
 }
+
 @mixin for-tablet-portrait-up {
-  @media (min-width: 600px) { @content; }
+  @media (min-width: 600px) {
+    @content;
+  }
 }
+
 @mixin for-tablet-landscape-up {
-  @media (min-width: 900px) { @content; }
+  @media (min-width: 900px) {
+    @content;
+  }
 }
+
 @mixin for-desktop-up {
-  @media (min-width: 1200px) { @content; }
+  @media (min-width: 1200px) {
+    @content;
+  }
 }
+
 @mixin for-big-desktop-up {
-  @media (min-width: 1800px) { @content; }
+  @media (min-width: 1800px) {
+    @content;
+  }
 }
 
 // usage

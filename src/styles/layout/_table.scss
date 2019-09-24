@@ -1,22 +1,23 @@
 .table {
     padding: 2rem;
 
-    > .row {
+    >.row {
         display: flex;
         border-bottom: 1px solid #2f2f2f;
+
         .fa-bars {
-          display: flex;
-          align-items: center;
-          cursor: move;
+            display: flex;
+            align-items: center;
+            cursor: move;
         }
 
         &.-head {
             font-family: $bold;
-            color: $green;
-            border-color: $green;
+            color: $secondaryColor;
+            border-color: $secondaryColor;
         }
 
-        > .col {
+        >.col {
             padding: 1rem;
             display: flex;
             align-items: center;
@@ -33,13 +34,19 @@
             &.-act {
                 width: 100px;
                 justify-content: center;
+
+                a {
+                    color: white;
+                    text-decoration: none;
+                    text-align: center;
+                }
             }
 
-            > .picture {
+            >.picture {
                 width: 50px;
             }
 
-            > .icon {
+            >.icon {
                 padding: 0 .5rem;
             }
         }
