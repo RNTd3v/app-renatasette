@@ -1,6 +1,25 @@
+import React, { useState } from "react";
+import { useUpload } from "react-use-upload";
+import gql from "graphql-tag";
+
+const UPLOAD_FILE = gql`
+  mutation uploadFile($file: Upload!) {
+    uploadFile(file: $file) {
+      path
+    }
+  }
+`;
+
+import { UploadFile } from "../UploadFile";
+
 const AdminWorkForm = ({ work }) => {
-  console.log(work);
-  const onSelectFile = e => {
+  let [file, setFile] = useState();
+
+  let { loading, progress } = useUpload(file, {
+    mutation: UPLOAD_FILE,
+    variables: { file: { file, name: "test" } }
+  });
+  /*const onSelectFile = e => {
     if (e && e.length > 0) {
       const reader = new FileReader();
       reader.addEventListener("load", () => {
@@ -8,7 +27,7 @@ const AdminWorkForm = ({ work }) => {
       });
       reader.readAsDataURL(e[0]);
     }
-  };
+  };*/
   return (
     <form className="form -grid" onSubmit={() => {}}>
       <div className="col">
@@ -51,6 +70,7 @@ const AdminWorkForm = ({ work }) => {
           onChange={event => {}}
         ></textarea>
       </div>
+      <UploadFile />
       <div className="picture">
         <label className="label">Picture*</label>
         <input
@@ -59,7 +79,7 @@ const AdminWorkForm = ({ work }) => {
           name="picture"
           className="input"
           placeholder="Picture"
-          onChange={e => onSelectFile(e.target.files)}
+          onChange={e => setFile(e.target.files[0])}
         />
         <img src={work.picture || ""} />
         <small className="required">*Campos obrigatorios</small>
