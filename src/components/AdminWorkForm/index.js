@@ -1,33 +1,21 @@
 import React, { useState } from "react";
-import { useUpload } from "react-use-upload";
+import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
-const UPLOAD_FILE = gql`
-  mutation uploadFile($file: Upload!) {
-    uploadFile(file: $file) {
-      path
-    }
+const GET_CAPA_WORK = gql`
+  {
+    capaWork @client
   }
 `;
 
 import { UploadFile } from "../UploadFile";
 
 const AdminWorkForm = ({ work }) => {
-  let [file, setFile] = useState();
-
-  let { loading, progress } = useUpload(file, {
-    mutation: UPLOAD_FILE,
-    variables: { file: { file, name: "test" } }
-  });
-  /*const onSelectFile = e => {
-    if (e && e.length > 0) {
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        console.log(reader.result), false;
-      });
-      reader.readAsDataURL(e[0]);
-    }
-  };*/
+  const { data, client } = useQuery(GET_CAPA_WORK);
+  if (data && data.capaWork) {
+    console.log("Comp Pai");
+    console.log(data.capaWork);
+  }
   return (
     <form className="form -grid" onSubmit={() => {}}>
       <div className="col">
@@ -70,18 +58,12 @@ const AdminWorkForm = ({ work }) => {
           onChange={event => {}}
         ></textarea>
       </div>
-      <UploadFile />
       <div className="picture">
-        <label className="label">Picture*</label>
-        <input
-          type="file"
-          id="picture"
-          name="picture"
-          className="input"
-          placeholder="Picture"
-          onChange={e => setFile(e.target.files[0])}
-        />
-        <img src={work.picture || ""} />
+        <label className="label">Imagem principal do trabalho*</label>
+        <div className="capa">
+          <img src={work.picture || data.capaWork} />
+          <UploadFile />
+        </div>
         <small className="required">*Campos obrigatorios</small>
       </div>
       <button className={`button -center`}>Save and Continue</button>

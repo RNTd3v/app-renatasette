@@ -1,61 +1,54 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { useMutation } from "@apollo/react-hooks";
+import { useApolloClient } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import { FirebaseSave } from "./FirebaseSave";
 
-import { storage } from "../../services/firebase";
-
-const UPLOAD_FILE = gql`
-  mutation uploadFile($file: Upload!) {
-    uploadFile(file: $file) {
-      path
-    }
+const GET_CAPA_WORK_FILE = gql`
+  {
+    tempCapaWorkFile @client
+    tempCapaWorkBase64 @client
   }
 `;
 
 export const UploadFile = () => {
-  // const [uploadFile] = useMutation(UPLOAD_FILE);
+  const { data, client } = useQuery(GET_CAPA_WORK_FILE);
+
   const onDrop = useCallback(([file]) => {
-    console.log(file);
-    /*uploadFile({
-        variables: { file }
-      });*/
-    const uploadTask = storage.ref(`images/${file.name}`).put(file);
-    uploadTask.on(
-      "state_changed",
-      snapshot => {
-        // progrss function ....
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        console.log(progress);
-      },
-      error => {
-        // error function ....
-        console.log(error);
-      },
-      () => {
-        // complete function ....
-        storage
-          .ref("images")
-          .child(file.name)
-          .getDownloadURL()
-          .then(url => {
-            console.log(url);
-          });
-      }
-    );
+    // client.writeData({ data: { tempCapaWorkFile: file } });
+    console.log({ file });
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      console.log(reader.result);
+      client.writeData({ data: { tempCapaWorkBase64: reader.result } });
+    });
+    reader.readAsDataURL(file);
   });
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      {isDragActive ? (
-        <p>Drop the files here ...</p>
-      ) : (
-        <p>Drag 'n' drop some files here, or click to select files</p>
-      )}
+    <div {...getRootProps()} className="upload-container">
+      <input
+        {...getInputProps()}
+        type="file"
+        id="picture"
+        name="picture"
+        className="input"
+      />
+      <div className="text">
+        {isDragActive ? (
+          <p>Arrastar o arquivo aqui ...</p>
+        ) : (
+          <p>Arrastar o arquivo ou clique para selecionar</p>
+        )}
+      </div>
+      <img
+        src={data && data.tempCapaWorkBase64 ? data.tempCapaWorkBase64 : ""}
+      />
+      <FirebaseSave
+        file={data && data.tempCapaWorkFile ? data.tempCapaWorkFile : ""}
+      />
     </div>
   );
 };

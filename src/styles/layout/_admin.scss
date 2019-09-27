@@ -51,12 +51,13 @@
         flex-direction: column;
         flex: 1;
         min-height: calc(100vh - 4rem);
-        padding: 5rem;
+        padding: 2rem;
         overflow-y: scroll;
 
         >.title {
             text-align: center;
             font-weight: 100;
+            margin-bottom: 2rem;
 
             >.name {
                 color: white;
