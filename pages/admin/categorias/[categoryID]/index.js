@@ -38,6 +38,13 @@ const WorksAdminPage = () => {
         <AdminHeader showButtonBack={true} route={"/admin"} />
         <main className="main">
           <h1 className="title">{category.namePT}</h1>
+          <Link
+            href="/admin/categorias/[categoryID]/add"
+            as={`/admin/categorias/${categoryID}/add`}
+          >
+            <button className="bt-add">Adicionar trabalho</button>
+          </Link>
+
           <AdminWorksByCategoryID categoryID={categoryID} />
         </main>
       </section>

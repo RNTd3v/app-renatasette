@@ -45,6 +45,7 @@
     "react-dropzone": "^10.1.9",
     "react-ga": "^2.5.3",
     "react-image-crop": "^6.0.4",
+    "react-responsive-modal": "^4.0.1",
     "react-sanitized-html": "^2.0.0",
     "react-slick": "^0.25.2",
     "react-spinners": "^0.4.5",

@@ -28,7 +28,7 @@ const GET_WORK_BY_ID = gql`
 
 const WorkAdminPage = () => {
   const router = useRouter();
-  const { workID } = router.query;
+  const { workID, categoryID } = router.query;
 
   const { data, loading, error } = useQuery(GET_WORK_BY_ID, {
     variables: { id: workID }
@@ -40,7 +40,7 @@ const WorkAdminPage = () => {
         <AdminHeader showButtonBack={true} route={"/admin"} />
         <main className="main">
           <h1 className="title">{work.namePT}</h1>
-          <AdminWorkForm work={work} />
+          <AdminWorkForm work={work} categoryID={categoryID} />
         </main>
       </section>
     );

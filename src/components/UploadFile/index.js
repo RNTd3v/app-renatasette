@@ -1,54 +1,79 @@
-import React, { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import React, { useState, useEffect } from "react";
 import { useApolloClient } from "@apollo/react-hooks";
-import { useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
-import { FirebaseSave } from "./FirebaseSave";
+import { storage } from "../../services/firebase";
 
-const GET_CAPA_WORK_FILE = gql`
-  {
-    tempCapaWorkFile @client
-    tempCapaWorkBase64 @client
+export default function UploadFile() {
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+  const [sourceImage, setSourceImage] = useState("");
+  const [progress, setProgress] = useState(0);
+  const client = useApolloClient();
+
+  function handleChange(e) {
+    if (e.target.files[0]) {
+      const image = e.target.files[0];
+      setImage(image);
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        setSourceImage(reader.result);
+      });
+      reader.readAsDataURL(image);
+    }
   }
-`;
-
-export const UploadFile = () => {
-  const { data, client } = useQuery(GET_CAPA_WORK_FILE);
-
-  const onDrop = useCallback(([file]) => {
-    // client.writeData({ data: { tempCapaWorkFile: file } });
-    console.log({ file });
-    const reader = new FileReader();
-    reader.addEventListener("load", () => {
-      console.log(reader.result);
-      client.writeData({ data: { tempCapaWorkBase64: reader.result } });
-    });
-    reader.readAsDataURL(file);
-  });
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-
+  function handleUpload(e) {
+    e.preventDefault();
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      snapshot => {
+        // progrss function ....
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(progress);
+      },
+      error => {
+        // error function ....
+        console.log(error);
+      },
+      () => {
+        // complete function ....
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url => {
+            setUrl(url);
+            setSourceImage(null);
+            setImage(null);
+            client.writeData({ data: { capaWork: url } });
+          });
+      }
+    );
+  }
   return (
-    <div {...getRootProps()} className="upload-container">
-      <input
-        {...getInputProps()}
-        type="file"
-        id="picture"
-        name="picture"
-        className="input"
-      />
-      <div className="text">
-        {isDragActive ? (
-          <p>Arrastar o arquivo aqui ...</p>
-        ) : (
-          <p>Arrastar o arquivo ou clique para selecionar</p>
-        )}
+    <div className="uploadWrapper">
+      <div className="input">
+        <input type="file" onChange={handleChange} />
+        <span className="texto">
+          Arraste uma imagem ou clique para selecionar uma
+        </span>
+        {sourceImage ? (
+          <>
+            <img src={sourceImage} alt="Uploaded images" />
+            <progress value={progress} max="100" />
+          </>
+        ) : null}
       </div>
-      <img
-        src={data && data.tempCapaWorkBase64 ? data.tempCapaWorkBase64 : ""}
-      />
-      <FirebaseSave
-        file={data && data.tempCapaWorkFile ? data.tempCapaWorkFile : ""}
-      />
+      {image ? (
+        <button onClick={handleUpload}>Salvar essa foto</button>
+      ) : (
+        <p className="message">
+          {url
+            ? "A imagem foi salva e estará no trabalho após clicar no botão abaixo"
+            : ""}
+        </p>
+      )}
     </div>
   );
-};
+}
