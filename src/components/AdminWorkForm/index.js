@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
+import { Snackbar } from "@material/react-snackbar";
+
 const GET_CAPA_WORK = gql`
   {
     capaWork @client
@@ -60,6 +62,11 @@ import UploadFile from "../UploadFile";
 
 export default function AdminWorkForm({ work, categoryID }) {
   const { data, client } = useQuery(GET_CAPA_WORK);
+  const [nameEN, setNameEN] = useState("");
+  const [namePT, setNamePT] = useState("");
+  const [descriptionEN, setDescriptionEN] = useState("");
+  const [descriptionPT, setDescriptionPT] = useState("");
+  const [picture, setPicture] = useState(null);
 
   const onCompleted = resposta => {
     console.log(resposta);
@@ -68,12 +75,6 @@ export default function AdminWorkForm({ work, categoryID }) {
   const onError = error => {
     console.error(error);
   };
-
-  const [nameEN, setNameEN] = useState("");
-  const [namePT, setNamePT] = useState("");
-  const [descriptionEN, setDescriptionEN] = useState("");
-  const [descriptionPT, setDescriptionPT] = useState("");
-  const [disabledButton, setDisabledButton] = useState(true);
 
   const [updateWork] = useMutation(UPDATE_WORK, {
     onCompleted,
@@ -91,46 +92,40 @@ export default function AdminWorkForm({ work, categoryID }) {
       setNamePT(work.namePT);
       setDescriptionEN(work.descriptionEN);
       setDescriptionPT(work.descriptionPT);
-      setDisabledButton(false);
+      setPicture(work.picture);
     }
   });
-
-  function checkDisabledButton() {
-    if (
-      (nameEN.length > 3 && namePT.length > 3 && (data && data.capaWork)) ||
-      (work && work.picture)
-    ) {
-      setDisabledButton(false);
-    }
-  }
 
   return (
     <form
       className="form -grid"
       onSubmit={e => {
         e.preventDefault();
-        work
-          ? updateWork({
-              variables: {
-                id: work.id,
-                categoryID,
-                nameEN,
-                namePT,
-                descriptionEN,
-                descriptionPT,
-                picture: data && data.capaWork ? data.capaWork : work.picture
-              }
-            })
-          : addWork({
-              variables: {
-                categoryID,
-                nameEN,
-                namePT,
-                descriptionEN,
-                descriptionPT,
-                picture: data && data.capaWork ? data.capaWork : work.picture
-              }
-            });
+        if (
+          (nameEN.length > 3 && namePT.length > 3 && picture) ||
+          (data && data.capaWork)
+        ) {
+          const variables = {
+            categoryID,
+            nameEN,
+            namePT,
+            descriptionEN,
+            descriptionPT,
+            picture: data && data.capaWork ? data.capaWork : picture
+          };
+          work
+            ? updateWork({
+                variables: {
+                  ...variables,
+                  id: work.id
+                }
+              })
+            : addWork({
+                variables
+              });
+        } else {
+          console.log("erro");
+        }
       }}
     >
       <div className="col">
@@ -180,25 +175,17 @@ export default function AdminWorkForm({ work, categoryID }) {
       <div className="picture">
         <label className="label">Imagem principal do trabalho*</label>
         <div className="capa">
-          {(data && data.capaWork) || (work && work.picture) ? (
-            <img src={data && data.capaWork ? data.capaWork : work.picture} />
+          {(data && data.capaWork) || picture ? (
+            <img src={data && data.capaWork ? data.capaWork : picture} />
           ) : null}
 
           <UploadFile />
         </div>
       </div>
-      <button
-        type="submit"
-        className={`button -center`}
-        disabled={
-          (nameEN.length < 3 &&
-            namePT.length < 3 &&
-            !(data && data.capaWork)) ||
-          !(work && work.picture)
-        }
-      >
+      <button type="submit" className={`button -center`}>
         Salvar e continuar
       </button>
+      <Snackbar message="Os campos com * são obrigatórios" actionText="" />
     </form>
   );
 }
