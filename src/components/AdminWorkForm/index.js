@@ -67,6 +67,7 @@ export default function AdminWorkForm({ work, categoryID }) {
   const [descriptionEN, setDescriptionEN] = useState("");
   const [descriptionPT, setDescriptionPT] = useState("");
   const [picture, setPicture] = useState(null);
+  const [message, setMessage] = useState(null);
 
   const onCompleted = resposta => {
     console.log(resposta);
@@ -74,6 +75,7 @@ export default function AdminWorkForm({ work, categoryID }) {
 
   const onError = error => {
     console.error(error);
+    setMessage(error)
   };
 
   const [updateWork] = useMutation(UPDATE_WORK, {
@@ -124,7 +126,7 @@ export default function AdminWorkForm({ work, categoryID }) {
                 variables
               });
         } else {
-          console.log("erro");
+          setMessage('Os campos com * são obrigatórios');
         }
       }}
     >
@@ -185,7 +187,9 @@ export default function AdminWorkForm({ work, categoryID }) {
       <button type="submit" className={`button -center`}>
         Salvar e continuar
       </button>
-      <Snackbar message="Os campos com * são obrigatórios" actionText="" />
+      {
+        message ? <Snackbar message={message} actionText="" /> : null
+      }
     </form>
   );
 }

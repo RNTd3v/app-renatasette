@@ -39,8 +39,8 @@ const WorksAdminPage = () => {
         <main className="main">
           <h1 className="title">{category.namePT}</h1>
           <Link
-            href="/admin/categorias/[categoryID]/add"
-            as={`/admin/categorias/${categoryID}/add`}
+            href="/admin/categorias/[categoryID]/trabalho/add"
+            as={`/admin/categorias/${categoryID}/trabalho/add`}
           >
             <button className="bt-add">Adicionar trabalho</button>
           </Link>

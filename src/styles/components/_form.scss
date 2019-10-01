@@ -91,6 +91,7 @@
         >.picture {
             width: 100%;
             padding: 2rem;
+            margin-right: 1rem;
 
             .capa {
                 display: flex;
@@ -100,7 +101,6 @@
             .uploadWrapper {
                 display: flex;
                 cursor: pointer;
-                margin-left: 1rem;
 
                 &.-picture {
                     .input {
