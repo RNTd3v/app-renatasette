@@ -4,14 +4,14 @@ import { useRouter } from "next/router";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
-import { withApollo } from "../../../../../src/lib/apollo-auth";
-import redirect from "../../../../../src/lib/redirect";
-import checkLoggedIn from "../../../../../src/lib/checkLoggedIn";
-import "../../../../../src/styles/main.scss";
+import { withApollo } from "../../../../../../src/lib/apollo-auth";
+import redirect from "../../../../../../src/lib/redirect";
+import checkLoggedIn from "../../../../../../src/lib/checkLoggedIn";
+import "../../../../../../src/styles/main.scss";
 
-import AdminHeader from "../../../../../src/components/AdminHeader";
-import AdminWorkForm from "../../../../../src/components/AdminWorkForm";
-import Loading from "../../../../../src/components/Loading";
+import AdminHeader from "../../../../../../src/components/AdminHeader";
+import AdminWorkForm from "../../../../../../src/components/AdminWorkForm";
+import Loading from "../../../../../../src/components/Loading";
 
 const GET_WORK_BY_ID = gql`
   query workAuth($id: ID!) {

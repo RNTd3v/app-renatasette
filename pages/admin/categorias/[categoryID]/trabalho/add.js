@@ -1,13 +1,13 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import { withApollo } from "../../../../src/lib/apollo-auth";
-import redirect from "../../../../src/lib/redirect";
-import checkLoggedIn from "../../../../src/lib/checkLoggedIn";
-import "../../../../src/styles/main.scss";
+import { withApollo } from "../../../../../src/lib/apollo-auth";
+import redirect from "../../../../../src/lib/redirect";
+import checkLoggedIn from "../../../../../src/lib/checkLoggedIn";
+import "../../../../../src/styles/main.scss";
 
-import AdminHeader from "../../../../src/components/AdminHeader";
-import AdminWorkForm from "../../../../src/components/AdminWorkForm";
+import AdminHeader from "../../../../../src/components/AdminHeader";
+import AdminWorkForm from "../../../../../src/components/AdminWorkForm";
 
 const AddWorkAdminPage = () => {
   const router = useRouter();

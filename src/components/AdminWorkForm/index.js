@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useRouter } from "next/router";
 import gql from "graphql-tag";
 
 import { Snackbar } from "@material/react-snackbar";
@@ -28,6 +29,7 @@ const ADD_WORK = gql`
       picture: $picture
     ) {
       id
+      namePT
       picture
     }
   }
@@ -53,6 +55,7 @@ const UPDATE_WORK = gql`
       picture: $picture
     ) {
       id
+      namePT
       picture
     }
   }
@@ -68,14 +71,19 @@ export default function AdminWorkForm({ work, categoryID }) {
   const [descriptionPT, setDescriptionPT] = useState("");
   const [picture, setPicture] = useState(null);
   const [message, setMessage] = useState(null);
+  const router = useRouter();
 
   const onCompleted = resposta => {
     console.log(resposta);
+    router.push(
+      `admin/categorias/[categoryID]/trabalho/[workID]/[workName]/medias`,
+      `admin/categorias/${categoryID}/trabalho/${resposta.createWork.id}/${resposta.createWork.namePT}/medias`
+    )
   };
 
   const onError = error => {
     console.error(error);
-    setMessage(error)
+    setMessage(error);
   };
 
   const [updateWork] = useMutation(UPDATE_WORK, {
@@ -126,7 +134,7 @@ export default function AdminWorkForm({ work, categoryID }) {
                 variables
               });
         } else {
-          setMessage('Os campos com * são obrigatórios');
+          setMessage("Os campos com * são obrigatórios");
         }
       }}
     >
@@ -187,9 +195,7 @@ export default function AdminWorkForm({ work, categoryID }) {
       <button type="submit" className={`button -center`}>
         Salvar e continuar
       </button>
-      {
-        message ? <Snackbar message={message} actionText="" /> : null
-      }
+      {message ? <Snackbar message={message} actionText="" /> : null}
     </form>
   );
 }

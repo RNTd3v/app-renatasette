@@ -10,7 +10,7 @@ import checkLoggedIn from "../../../../../../../../src/lib/checkLoggedIn";
 import "../../../../../../../../src/styles/main.scss";
 
 import AdminHeader from "../../../../../../../../src/components/AdminHeader";
-import AdminWorkForm from "../../../../../../../../src/components/AdminWorkForm";
+import AdminMedias from "../../../../../../../../src/components/AdminMedias";
 import Loading from "../../../../../../../../src/components/Loading";
 
 const GET_MEDIAS_BY_WORKID = gql`
@@ -39,7 +39,7 @@ const MediasByWorkAdminPage = () => {
         <AdminHeader showButtonBack={true} route={"/admin"} />
         <main className="main">
           <h1 className="title">{workName}</h1>
-          <AdminWorkForm medias={medias} workID={workID} />
+          <AdminMedias medias={medias} workID={workID} />
         </main>
       </section>
     );

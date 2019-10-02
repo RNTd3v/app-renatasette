@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useApolloClient } from "@apollo/react-hooks";
 import { storage } from "../../services/firebase";
 
-export default function UploadFile() {
+export default function UploadFile(isMedia) {
   const [image, setImage] = useState("");
   const [url, setUrl] = useState("");
   const [sourceImage, setSourceImage] = useState("");
@@ -46,7 +46,9 @@ export default function UploadFile() {
             setUrl(url);
             setSourceImage(null);
             setImage(null);
-            client.writeData({ data: { capaWork: url } });
+            isMedia
+              ? client.writeData({ data: { urlMedia: url } })
+              : client.writeData({ data: { capaWork: url } });
           });
       }
     );
