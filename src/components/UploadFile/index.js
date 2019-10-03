@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useApolloClient } from "@apollo/react-hooks";
 import { storage } from "../../services/firebase";
 
-export default function UploadFile(isMedia) {
+export default function UploadFile({ isMedia }) {
   const [image, setImage] = useState("");
   const [url, setUrl] = useState("");
   const [sourceImage, setSourceImage] = useState("");

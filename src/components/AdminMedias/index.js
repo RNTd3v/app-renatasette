@@ -1,5 +1,8 @@
 import React from "react";
 
+import AdminCapaMedia from "./Capa";
+import AdminListMedias from "./List";
+
 export default function AdminMedias({ medias, workID }) {
   return (
     <>

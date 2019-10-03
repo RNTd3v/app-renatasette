@@ -1,5 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useMutation } from "@apollo/react-hooks";
+
+import gql from "graphql-tag";
 import Vimeo from "@u-wave/react-vimeo";
+
+import Modal from "react-responsive-modal";
+
+import AdminFormMedia from "../Form";
 
 const DELETE_MEDIA = gql`
   mutation deleteMedia($id: String!) {

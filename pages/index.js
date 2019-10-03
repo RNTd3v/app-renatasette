@@ -18,8 +18,7 @@ import Categories from "../src/components/Categories";
 import Slider from "../src/components/Slider";
 import Footer from "../src/components/Footer";
 
-const IndexPage = ({isMobile}) => {
-  console.log(isMobile);
+const IndexPage = ({ isMobile }) => {
   return (
     <>
       <Head>
@@ -41,14 +40,14 @@ const IndexPage = ({isMobile}) => {
   );
 };
 
-IndexPage.getInitialProps = async (context) => {
+IndexPage.getInitialProps = async context => {
   let isMobile;
   if (context.req) {
-    isMobile = detectMobile(context.req.headers['user-agent']);
+    isMobile = detectMobile(context.req.headers["user-agent"]);
   } else {
     isMobile = detectMobile(window.navigator.userAgent);
   }
-  return {isMobile}
+  return { isMobile };
 };
 
 export default withData(IndexPage);

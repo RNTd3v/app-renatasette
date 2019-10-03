@@ -76,9 +76,8 @@ export default function AdminWorkForm({ work, categoryID }) {
   const onCompleted = resposta => {
     console.log(resposta);
     router.push(
-      `admin/categorias/[categoryID]/trabalho/[workID]/[workName]/medias`,
-      `admin/categorias/${categoryID}/trabalho/${resposta.createWork.id}/${resposta.createWork.namePT}/medias`
-    )
+      `/admin/categorias/${categoryID}/trabalho/${resposta.createWork.id}/${resposta.createWork.namePT}/medias`
+    );
   };
 
   const onError = error => {
