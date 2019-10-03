@@ -91,17 +91,20 @@ export default function AdminCapaMedia({ capa, workID }) {
   });
 
   return (
-    <>
-      {url ? (
-        <Vimeo
-          video={url}
-          width={300}
-          showByline={false}
-          showTitle={false}
-          showPortrait={false}
-        />
-      ) : null}
-
+    <div className="capa-media">
+      <div className="video">
+        {url ? (
+          <Vimeo
+            video={url}
+            width={300}
+            showByline={false}
+            showTitle={false}
+            showPortrait={false}
+          />
+        ) : (
+          <p className="text-none">Nenhum video adicionado</p>
+        )}
+      </div>
       <form
         className="form -grid"
         onSubmit={e => {
@@ -114,7 +117,7 @@ export default function AdminCapaMedia({ capa, workID }) {
               isMovie: true,
               url
             };
-            work
+            capa
               ? updateCapa({
                   variables: {
                     ...variables,
@@ -129,7 +132,6 @@ export default function AdminCapaMedia({ capa, workID }) {
           }
         }}
       >
-        <div className="col">
           <input
             type="text"
             id="titleEN"
@@ -163,12 +165,11 @@ export default function AdminCapaMedia({ capa, workID }) {
               setUrl(event.target.value);
             }}
           />
-        </div>
-        <button type="submit" className={`button -center`}>
-          Salvar capa
-        </button>
-        {message ? <Snackbar message={message} actionText="" /> : null}
+          <button type="submit" className={`button -center`}>
+            Salvar capa
+          </button>
+          {message ? <Snackbar message={message} actionText="" /> : null}
       </form>
-    </>
+    </div>
   );
 }
