@@ -23,6 +23,20 @@
         justify-content: space-around;
         align-items: center;
 
+        label {
+            font-size: .8rem;
+            margin-bottom: 1rem;
+            display: block;
+
+            input {
+                margin-top: .5rem;
+
+                &[type=checkbox] {
+                    margin: .5rem;
+                }
+            }
+        }
+
         @media #{$mq-tablet} {
             padding: 5rem 0;
         }

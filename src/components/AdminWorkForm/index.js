@@ -75,8 +75,11 @@ export default function AdminWorkForm({ work, categoryID }) {
 
   const onCompleted = resposta => {
     console.log(resposta);
+    const id = work ? resposta.updateWork.id : resposta.createWork.id;
+    const name = work ? resposta.updateWork.namePT : resposta.createWork.namePT;
+
     router.push(
-      `/admin/categorias/${categoryID}/trabalho/${resposta.createWork.id}/${resposta.createWork.namePT}/medias`
+      `/admin/categorias/${categoryID}/trabalho/${id}/${name}/medias`
     );
   };
 

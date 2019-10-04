@@ -17,7 +17,7 @@ const ADD_MEDIA = gql`
     $titlePT: String!
     $titleEN: String!
     $isMovie: Boolean
-    $url: String
+    $url: String!
   ) {
     createMedia(
       workID: $workID
@@ -43,7 +43,7 @@ const UPDATE_MEDIA = gql`
     $titlePT: String!
     $titleEN: String!
     $isMovie: Boolean
-    $url: String
+    $url: String!
   ) {
     updateMedia(
       id: $id
@@ -65,11 +65,13 @@ const UPDATE_MEDIA = gql`
 
 export default function AdminFormMedia({ media, workID }) {
   const { data, client } = useQuery(GET_URL_MEDIA);
-  const [titleEN, setTitleEN] = useState("");
-  const [titlePT, setTitlePT] = useState("");
-  const [url, setUrl] = useState("");
-  const [isMovie, setIsMovie] = useState(false);
   const [message, setMessage] = useState(null);
+  const [form, setValues] = useState({
+    titleEN: "",
+    titlePT: "",
+    url: "",
+    isMovie: true
+  });
 
   const onCompleted = resposta => {
     console.log(resposta);
@@ -91,14 +93,24 @@ export default function AdminFormMedia({ media, workID }) {
     onError
   });
 
+  const updateField = e => {
+    setValues({
+      ...form,
+      [e.target.name]:
+        e.target.type === "checkbox" ? e.target.checked : e.target.value
+    });
+  };
+
   useEffect(() => {
     if (media) {
-      setTitleEN(media.titleEN);
-      setTitlePT(media.titlePT);
-      setUrl(media.url);
-      setIsMovie(media.isMovie);
+      setValues({
+        titleEN: media.titleEN,
+        titlePT: media.titlePT,
+        url: media.url,
+        isMovie: media.isMovie
+      });
     }
-  });
+  }, []);
 
   return (
     <>
@@ -106,15 +118,19 @@ export default function AdminFormMedia({ media, workID }) {
         className="form -grid"
         onSubmit={e => {
           e.preventDefault();
-          if (titleEN.length > 3 && titlePT.length > 3 && url.length > 3) {
+          if (
+            form.titleEN.length > 3 &&
+            form.titlePT.length > 3 &&
+            form.url.length > 3
+          ) {
             const variables = {
               workID,
-              titlePT,
-              titleEN,
-              isMovie,
-              url
+              titlePT: form.titlePT,
+              titleEN: form.titleEN,
+              isMovie: form.isMovie,
+              url: form.url
             };
-            work
+            media
               ? updateMedia({
                   variables: {
                     ...variables,
@@ -129,70 +145,71 @@ export default function AdminFormMedia({ media, workID }) {
           }
         }}
       >
-        <div className="col">
+        <label>
+          Título (EN):
           <input
             type="text"
             id="titleEN"
             name="titleEN"
             className="input"
             placeholder="Title*"
-            value={titleEN}
-            onChange={event => {
-              setTitleEN(event.target.value);
-            }}
+            value={form.titleEN}
+            onChange={updateField}
           />
+        </label>
+        <label>
+          Título (PT):
           <input
             type="text"
             id="titlePT"
             name="titlePT"
             className="input"
             placeholder="Título*"
-            value={titlePT}
-            onChange={event => {
-              setTitlePT(event.target.value);
-            }}
+            value={form.titlePT}
+            onChange={updateField}
           />
-          {isMovie ? (
+        </label>
+        <label>
+          É vídeo?:
+          <input
+            name="isMovie"
+            type="checkbox"
+            checked={form.isMovie}
+            onChange={updateField}
+          />
+          Sim
+        </label>
+        {form.isMovie ? (
+          <label>
+            Código do vídeo no Vimeo:
             <input
               type="text"
               id="url"
-              name="title"
+              name="url"
               className="input"
               placeholder="Código do vídeo no vimeo"
-              value={url}
-              onChange={event => {
-                setUrl(event.target.value);
-              }}
+              value={form.url}
+              onChange={updateField}
             />
-          ) : (
-            <UploadFile isMedia={true} />
-          )}
-          <input
-            type="text"
-            id="url"
-            name="title"
-            className="input"
-            placeholder="Código do vídeo no vimeo"
-            value={url}
-            onChange={event => {
-              setUrl(event.target.value);
-            }}
-          />
-        </div>
-        {isMovie ? (
+          </label>
+        ) : (
+          <UploadFile isMedia={true} />
+        )}
+        <button type="submit" className={`button -center`}>
+          Salvar media
+        </button>
+        {form.isMovie ? (
           <Vimeo
-            video={url}
+            video={form.url}
             width={300}
             showByline={false}
             showTitle={false}
             showPortrait={false}
           />
         ) : (
-          <img src={data && data.urlMedia ? data.urlMedia : url} />
+          <img src={data && data.urlMedia ? data.urlMedia : form.url} />
         )}
-        <button type="submit" className={`button -center`}>
-          Salvar media
-        </button>
+
         {message ? <Snackbar message={message} actionText="" /> : null}
       </form>
     </>

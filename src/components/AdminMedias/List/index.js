@@ -47,41 +47,43 @@ export default function AdminListMedias({ medias, workID }) {
   return (
     <>
       <div className="admin-medias">
-        {medias.map((m, i) => (
-          <div className="item" key={i}>
-            {m.isMovie ? (
-              <Vimeo
-                video={m.url}
-                width={300}
-                showByline={false}
-                showTitle={false}
-                showPortrait={false}
-              />
-            ) : (
-              <img src={m.url} />
-            )}
-            <div className="action">
-              <button
-                className="bt-edit"
-                onClick={() => {
-                  setSelectedMedia(m);
-                }}
-              >
-                Editar
-              </button>
-              <button
-                className="bt-delete"
-                onClick={() => {
-                  setDeleteMedia(m.id);
-                  setOpenModal(true);
-                }}
-              >
-                Excluir
-              </button>
-            </div>
-          </div>
-        ))}
         <AdminFormMedia media={selectedMedia} workID={workID} />
+        <div className="list">
+          {medias.slice(1).map((m, i) => (
+            <div className="item" key={i}>
+              {m.isMovie ? (
+                <Vimeo
+                  video={m.url}
+                  width={300}
+                  showByline={false}
+                  showTitle={false}
+                  showPortrait={false}
+                />
+              ) : (
+                <img src={m.url} />
+              )}
+              <div className="action">
+                <button
+                  className="bt-edit"
+                  onClick={() => {
+                    setSelectedMedia(m);
+                  }}
+                >
+                  Editar
+                </button>
+                <button
+                  className="bt-delete"
+                  onClick={() => {
+                    setDeleteMedia(m.id);
+                    setOpenModal(true);
+                  }}
+                >
+                  Excluir
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       <Modal open={openModal} onClose={onCloseModal} center>
         <p className="text-modal">
