@@ -63,7 +63,7 @@ const UPDATE_MEDIA = gql`
   }
 `;
 
-export default function AdminFormMedia({ media, workID }) {
+export default function AdminFormMedia({ media, workID, path }) {
   const { data, client } = useQuery(GET_URL_MEDIA);
   const [message, setMessage] = useState(null);
   const [form, setValues] = useState({
@@ -76,6 +76,9 @@ export default function AdminFormMedia({ media, workID }) {
   const onCompleted = resposta => {
     console.log(resposta);
     setMessage("Media salva com sucesso");
+    Router.push(
+      `/admin/categorias/${path.categoryID}/trabalho/${path.workID}/${path.workName}/medias`
+    );
   };
 
   const onError = error => {
@@ -103,14 +106,18 @@ export default function AdminFormMedia({ media, workID }) {
 
   useEffect(() => {
     if (media) {
-      setValues({
-        titleEN: media.titleEN,
-        titlePT: media.titlePT,
-        url: media.url,
-        isMovie: media.isMovie
-      });
+      loadMedia();
     }
-  }, []);
+  }, [media]);
+
+  function loadMedia() {
+    setValues({
+      titleEN: media.titleEN,
+      titlePT: media.titlePT,
+      url: media.url,
+      isMovie: media.isMovie
+    });
+  }
 
   return (
     <>
@@ -121,15 +128,16 @@ export default function AdminFormMedia({ media, workID }) {
           if (
             form.titleEN.length > 3 &&
             form.titlePT.length > 3 &&
-            form.url.length > 3
+            (form.url.length > 3 || (data && data.urlMedia))
           ) {
             const variables = {
               workID,
               titlePT: form.titlePT,
               titleEN: form.titleEN,
               isMovie: form.isMovie,
-              url: form.url
+              url: data && data.urlMedia ? data.urlMedia : form.url
             };
+            console.log(variables);
             media
               ? updateMedia({
                   variables: {
@@ -198,10 +206,11 @@ export default function AdminFormMedia({ media, workID }) {
         <button type="submit" className={`button -center`}>
           Salvar media
         </button>
-        {form.isMovie ? (
+        {form.isMovie && form.url ? (
           <Vimeo
             video={form.url}
-            width={300}
+            width={200}
+            height={100}
             showByline={false}
             showTitle={false}
             showPortrait={false}

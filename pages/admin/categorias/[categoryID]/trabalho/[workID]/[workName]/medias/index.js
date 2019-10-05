@@ -17,9 +17,9 @@ const GET_MEDIAS_BY_WORKID = gql`
   query mediasByWorkAuth($workID: ID!) {
     mediasByWorkAuth(workID: $workID) {
       id
-      titlePT,
-      titleEN,
-      isMovie,
+      titlePT
+      titleEN
+      isMovie
       url
     }
   }
@@ -27,7 +27,9 @@ const GET_MEDIAS_BY_WORKID = gql`
 
 const MediasByWorkAdminPage = () => {
   const router = useRouter();
-  const { workID, workName } = router.query;
+  const { workID, workName, categoryID } = router.query;
+
+  const path = { workID, workName, categoryID };
 
   const { data, loading, error } = useQuery(GET_MEDIAS_BY_WORKID, {
     variables: { workID }
@@ -39,7 +41,7 @@ const MediasByWorkAdminPage = () => {
         <AdminHeader showButtonBack={true} route={"/admin"} />
         <main className="main">
           <h1 className="title">{workName}</h1>
-          <AdminMedias medias={medias} workID={workID} />
+          <AdminMedias medias={medias} workID={workID} path={path} />
         </main>
       </section>
     );

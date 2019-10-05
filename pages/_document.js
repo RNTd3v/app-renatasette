@@ -15,6 +15,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <title>Renata Sette</title>
           {this.props.styleTags}
           <meta
             name="viewport"

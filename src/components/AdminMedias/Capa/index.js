@@ -113,7 +113,7 @@ export default function AdminCapaMedia({ capa, workID }) {
             showPortrait={false}
           />
         ) : (
-          <p className="text-none">Nenhum video adicionado</p>
+          <p className="text-none">Nenhum video de capa adicionado</p>
         )}
       </div>
       <form

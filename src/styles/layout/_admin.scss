@@ -85,15 +85,42 @@
 
                 button {
                     margin-top: 10px;
+                    margin-bottom: 20px;
                 }
+            }
+
+            .uploadWrapper {
+                width: 200px;
+                flex-direction: column;
             }
 
             >.list {
                 flex: 1;
                 display: flex;
+                margin-top: -1rem;
+                flex-wrap: wrap;
 
                 >.item {
                     padding: 1.5rem;
+
+                    img {
+                        width: 300px;
+                    }
+
+                    .action {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        flex-direction: row;
+
+                        button {
+                            padding: .5rem;
+                            cursor: pointer;
+                            border: 1px solid grey;
+                            background: 0;
+                            color: grey;
+                        }
+                    }
                 }
             }
         }
@@ -242,6 +269,36 @@
 
             >.title {
                 margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+.socialmedia-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+        width: 40rem;
+
+        .form.-grid {
+            align-items: flex-end;
+
+            label {
+                margin-bottom: 0 !important;
+            }
+
+            button {
+                width: 100px;
+                margin: 0;
+                margin-left: 1rem;
             }
         }
     }

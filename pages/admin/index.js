@@ -36,6 +36,13 @@ const IndexAdminPage = ({ userName }) => {
             <i className="fas fa-envelope icon"></i>
             <h2 className="title">Contatos</h2>
           </div>
+          <div
+            className="item"
+            onClick={() => Router.push(`/admin/social-media`)}
+          >
+            <i className="fas fa-share-alt-square icon"></i>
+            <h2 className="title">Redes Sociais</h2>
+          </div>
         </div>
       </main>
     </section>

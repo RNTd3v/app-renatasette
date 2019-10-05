@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
+import Router from "next/router";
 
 import gql from "graphql-tag";
 import Vimeo from "@u-wave/react-vimeo";
@@ -16,10 +17,12 @@ const DELETE_MEDIA = gql`
   }
 `;
 
-export default function AdminListMedias({ medias, workID }) {
+export default function AdminListMedias({ medias, workID, path }) {
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [deleteMedia, setDeleteMedia] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+
+  console.log(medias);
 
   const onOpenModal = () => {
     setOpenModal(true);
@@ -32,7 +35,9 @@ export default function AdminListMedias({ medias, workID }) {
   const onCompleted = resposta => {
     if (resposta.deleteMedia.id) {
       setOpenModal(false);
-      Router.push(`/admin/categorias/${categoryID}`);
+      Router.push(
+        `/admin/categorias/${path.categoryID}/trabalho/${path.workID}/${path.workName}/medias`
+      );
     }
   };
 
@@ -47,14 +52,15 @@ export default function AdminListMedias({ medias, workID }) {
   return (
     <>
       <div className="admin-medias">
-        <AdminFormMedia media={selectedMedia} workID={workID} />
+        <AdminFormMedia media={selectedMedia} workID={workID} path={path} />
         <div className="list">
-          {medias.slice(1).map((m, i) => (
+          {medias.map((m, i) => (
             <div className="item" key={i}>
               {m.isMovie ? (
                 <Vimeo
                   video={m.url}
                   width={300}
+                  height={200}
                   showByline={false}
                   showTitle={false}
                   showPortrait={false}
