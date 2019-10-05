@@ -32,7 +32,7 @@ const IndexAdminPage = ({ userName }) => {
             <i className="fas fa-user-circle icon"></i>
             <h2 className="title">Bio</h2>
           </div>
-          <div className="item" onClick={() => Router.push(`/admin/contact`)}>
+          <div className="item" onClick={() => Router.push(`/admin/contacts`)}>
             <i className="fas fa-envelope icon"></i>
             <h2 className="title">Contatos</h2>
           </div>

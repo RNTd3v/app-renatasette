@@ -91,6 +91,7 @@ const BioAdminPage = () => {
     <section className="admin">
       <AdminHeader showButtonBack={true} route={"/admin"} />
       <main className="main">
+        <h1 className="title">Bio</h1>
         <div className="editor">
           <h3 className="title">Content (En)</h3>
           <CKEditor
