@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import Vimeo from "@u-wave/react-vimeo";
 import { Snackbar } from "@material/react-snackbar";
 import UploadFile from "../../UploadFile";
+import Router from "next/router";
 
 const GET_URL_MEDIA = gql`
   {
@@ -63,7 +64,7 @@ const UPDATE_MEDIA = gql`
   }
 `;
 
-export default function AdminFormMedia({ media, workID, path }) {
+export default function AdminFormMedia({ media, workID, path, isFirst }) {
   const { data, client } = useQuery(GET_URL_MEDIA);
   const [message, setMessage] = useState(null);
   const [form, setValues] = useState({
@@ -137,7 +138,6 @@ export default function AdminFormMedia({ media, workID, path }) {
               isMovie: form.isMovie,
               url: data && data.urlMedia ? data.urlMedia : form.url
             };
-            console.log(variables);
             media
               ? updateMedia({
                   variables: {
@@ -177,16 +177,19 @@ export default function AdminFormMedia({ media, workID, path }) {
             onChange={updateField}
           />
         </label>
-        <label>
-          É vídeo?:
-          <input
-            name="isMovie"
-            type="checkbox"
-            checked={form.isMovie}
-            onChange={updateField}
-          />
-          Sim
-        </label>
+        {!isFirst ? (
+          <label>
+            É vídeo?:
+            <input
+              name="isMovie"
+              type="checkbox"
+              checked={form.isMovie}
+              onChange={updateField}
+            />
+            Sim
+          </label>
+        ) : null}
+
         {form.isMovie ? (
           <label>
             Código do vídeo no Vimeo:

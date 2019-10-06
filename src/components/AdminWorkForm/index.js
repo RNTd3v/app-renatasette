@@ -65,11 +65,15 @@ import UploadFile from "../UploadFile";
 
 export default function AdminWorkForm({ work, categoryID }) {
   const { data, client } = useQuery(GET_CAPA_WORK);
-  const [nameEN, setNameEN] = useState("");
-  const [namePT, setNamePT] = useState("");
-  const [descriptionEN, setDescriptionEN] = useState("");
-  const [descriptionPT, setDescriptionPT] = useState("");
-  const [picture, setPicture] = useState(null);
+
+  const [form, setValues] = useState({
+    nameEN: "",
+    namePT: "",
+    descriptionEN: "",
+    descriptionPT: "",
+    picture: null
+  });
+
   const [message, setMessage] = useState(null);
   const router = useRouter();
 
@@ -98,15 +102,28 @@ export default function AdminWorkForm({ work, categoryID }) {
     onError
   });
 
+  const updateField = e => {
+    setValues({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  };
+
   useEffect(() => {
     if (work) {
-      setNameEN(work.nameEN);
-      setNamePT(work.namePT);
-      setDescriptionEN(work.descriptionEN);
-      setDescriptionPT(work.descriptionPT);
-      setPicture(work.picture);
+      loadWork();
     }
-  });
+  }, [work]);
+
+  function loadWork() {
+    setValues({
+      nameEN: work.nameEN,
+      namePT: work.namePT,
+      descriptionEN: work.descriptionEN,
+      descriptionPT: work.descriptionPT,
+      picture: work.picture
+    });
+  }
 
   return (
     <form
@@ -114,16 +131,16 @@ export default function AdminWorkForm({ work, categoryID }) {
       onSubmit={e => {
         e.preventDefault();
         if (
-          (nameEN.length > 3 && namePT.length > 3 && picture) ||
+          (form.nameEN.length > 3 && form.namePT.length > 3 && form.picture) ||
           (data && data.capaWork)
         ) {
           const variables = {
             categoryID,
-            nameEN,
-            namePT,
-            descriptionEN,
-            descriptionPT,
-            picture: data && data.capaWork ? data.capaWork : picture
+            nameEN: form.nameEN,
+            namePT: form.namePT,
+            descriptionEN: form.descriptionEN,
+            descriptionPT: form.descriptionPT,
+            picture: data && data.capaWork ? data.capaWork : form.picture
           };
           work
             ? updateWork({
@@ -144,51 +161,47 @@ export default function AdminWorkForm({ work, categoryID }) {
         <small>English</small>
         <input
           type="text"
-          id="title"
-          name="title"
+          id="nameEN"
+          name="nameEN"
           className="input"
           placeholder="Title*"
-          value={nameEN}
-          onChange={event => {
-            setNameEN(event.target.value);
-          }}
+          value={form.nameEN}
+          onChange={updateField}
         />
         <textarea
           placeholder="Description"
-          id="description"
-          name="description"
+          id="descriptionEN"
+          name="descriptionEN"
           className="textarea"
-          value={descriptionEN}
-          onChange={event => {
-            setDescriptionEN(event.target.value);
-          }}
+          value={form.descriptionEN}
+          onChange={updateField}
         ></textarea>
       </div>
       <div className="col">
         <small>Português</small>
         <input
           type="text"
-          id="titulo"
-          name="title_pt"
+          id="namePT"
+          name="namePT"
           className="input"
           placeholder="Título*"
-          value={namePT}
-          onChange={event => setNamePT(event.target.value)}
+          value={form.namePT}
+          onChange={updateField}
         />
         <textarea
           placeholder="Descrição"
-          id="descricao"
-          name="description_pt"
+          id="descriptionPT"
+          name="descriptionPT"
           className="textarea"
-          value={descriptionPT}
-          onChange={event => setDescriptionPT(event.target.value)}
+          value={form.descriptionPT}
+          onChange={updateField}
         ></textarea>
       </div>
       <div className="picture">
         <label className="label">Imagem principal do trabalho*</label>
         <div className="capa">
-          {(data && data.capaWork) || picture ? (
-            <img src={data && data.capaWork ? data.capaWork : picture} />
+          {(data && data.capaWork) || form.picture ? (
+            <img src={data && data.capaWork ? data.capaWork : form.picture} />
           ) : null}
 
           <UploadFile />

@@ -22,8 +22,6 @@ export default function AdminListMedias({ medias, workID, path }) {
   const [deleteMedia, setDeleteMedia] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
-  console.log(medias);
-
   const onOpenModal = () => {
     setOpenModal(true);
   };
@@ -52,7 +50,12 @@ export default function AdminListMedias({ medias, workID, path }) {
   return (
     <>
       <div className="admin-medias">
-        <AdminFormMedia media={selectedMedia} workID={workID} path={path} />
+        <AdminFormMedia
+          media={selectedMedia}
+          workID={workID}
+          path={path}
+          isFirst={medias.length === 0}
+        />
         <div className="list">
           {medias.map((m, i) => (
             <div className="item" key={i}>
