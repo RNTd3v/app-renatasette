@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/react-hooks";
+
 import gql from "graphql-tag";
 import Vimeo from "@u-wave/react-vimeo";
 import { Snackbar } from "@material/react-snackbar";
@@ -77,9 +78,7 @@ export default function AdminFormMedia({ media, workID, path, isFirst }) {
   const onCompleted = resposta => {
     console.log(resposta);
     setMessage("Media salva com sucesso");
-    Router.push(
-      `/admin/categorias/${path.categoryID}/trabalho/${path.workID}/${path.workName}/medias`
-    );
+    Router.push(path);
   };
 
   const onError = error => {

@@ -113,14 +113,34 @@
                         justify-content: space-between;
                         flex-direction: row;
 
-                        button {
-                            padding: .5rem;
-                            cursor: pointer;
-                            border: 1px solid grey;
-                            background: 0;
-                            color: grey;
+                        .bt-add {
+                            flex: 1;
                         }
+
+                        .bt-excluir {
+                            border: none;
+                            padding: 0;
+                            width: 50px;
+                            background: 0;
+                            cursor: pointer;
+
+                            i {
+                                color: red;
+                                font-size: 1rem;
+                            }
+                        }
+
                     }
+                }
+            }
+
+            &~.buttons {
+                display: flex;
+                align-items: center;
+                margin: 1rem 0;
+
+                >button {
+                    margin: .5rem;
                 }
             }
         }
@@ -310,6 +330,11 @@
 
 .ck-file-dialog-button {
     display: none !important;
+}
+
+.no-data {
+    text-align: center;
+    margin: 2rem;
 }
 
 .text-modal {

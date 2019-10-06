@@ -53,7 +53,7 @@ export default function AdminListMedias({ medias, workID, path }) {
         <AdminFormMedia
           media={selectedMedia}
           workID={workID}
-          path={path}
+          path={`/admin/categorias/${path.categoryID}/trabalho/${path.workID}/${path.workName}/medias`}
           isFirst={medias.length === 0}
         />
         <div className="list">
@@ -73,7 +73,7 @@ export default function AdminListMedias({ medias, workID, path }) {
               )}
               <div className="action">
                 <button
-                  className="bt-edit"
+                  className="bt-add"
                   onClick={() => {
                     setSelectedMedia(m);
                   }}
@@ -81,18 +81,36 @@ export default function AdminListMedias({ medias, workID, path }) {
                   Editar
                 </button>
                 <button
-                  className="bt-delete"
+                  className="bt-excluir"
                   onClick={() => {
                     setDeleteMedia(m.id);
                     setOpenModal(true);
                   }}
                 >
-                  Excluir
+                  <i className="fas fa-trash-alt"></i>
                 </button>
               </div>
             </div>
           ))}
         </div>
+      </div>
+      <div className="buttons">
+        <button
+          className="button"
+          onClick={() => {
+            Router.push(`/admin/categorias/`);
+          }}
+        >
+          Cadastrar mais trabalhos
+        </button>
+        <button
+          className="button"
+          onClick={() => {
+            Router.push(`/admin/categorias/${path.categoryID}/`);
+          }}
+        >
+          Cadastrar mais trabalhos para a mesma categoria
+        </button>
       </div>
       <Modal open={openModal} onClose={onCloseModal} center>
         <p className="text-modal">
