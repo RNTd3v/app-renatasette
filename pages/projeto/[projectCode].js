@@ -34,12 +34,11 @@ export default withData(_ => {
   const { data, loading, error } = useQuery(GET_PROJECT_FROM_CODE, {
     variables: { codePT: projectCode }
   });
-  console.log(data);
   if (loading) return <Loading />;
   if (error) return <p>ERROR: {error.message}</p>;
   if (data && data.projectByCodePT) {
     const project = data.projectByCodePT;
-
+    console.log(project);
     return (
       <div>
         <Head>
@@ -59,7 +58,7 @@ export default withData(_ => {
             isDynamic={true}
           />
           <main className="content work-detail">
-            <WorkMedias work={project} language="pt" />
+            {/*<WorkMedias work={project} language="pt" />*/}
           </main>
           <Footer language="pt" />
         </section>

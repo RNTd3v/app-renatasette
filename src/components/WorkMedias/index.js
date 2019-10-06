@@ -23,9 +23,13 @@ export default function WorkMedias({ work, language }) {
   const { data, loading, error } = useQuery(GET_MEDIA_FROM_WORK, {
     variables: { workID: work.id }
   });
+  const [lightboxController, setLightboxController] = useState({
+    toggler: false,
+    slide: 1
+  });
   if (loading) return <Loading />;
   if (error) return <p>ERROR: {error.message}</p>;
-  if (data && data.mediasByWork) {
+  if (data && data.mediasByWork && data.mediasByWork.length > 0) {
     const medias = data.mediasByWork;
     if (medias.length > 0) {
       console.log(medias);
@@ -53,11 +57,6 @@ export default function WorkMedias({ work, language }) {
       const onlyMedias = medias
         .map(m => (m.isMovie ? null : m.url))
         .filter(m => m !== null);
-
-      const [lightboxController, setLightboxController] = useState({
-        toggler: false,
-        slide: 1
-      });
 
       function openLightboxOnSlide(slide) {
         let item;
@@ -102,9 +101,10 @@ export default function WorkMedias({ work, language }) {
                       showPortrait={false}
                     />
                   ) : (
-                    <a onClick={() => openLightboxOnSlide(m)}>
+                    /*<a onClick={() => openLightboxOnSlide(m)}>
                       <img src={m.url} />
-                    </a>
+                  </a>*/
+                    <img src={m.url} />
                   )}
                 </div>
               ))}
@@ -121,9 +121,10 @@ export default function WorkMedias({ work, language }) {
                       showPortrait={false}
                     />
                   ) : (
-                    <a onClick={() => openLightboxOnSlide(m)}>
+                    /*<a onClick={() => openLightboxOnSlide(m)}>
                       <img src={m.url} />
-                    </a>
+                  </a>*/
+                    <img src={m.url} />
                   )}
                 </div>
               ))}
