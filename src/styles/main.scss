@@ -68,6 +68,14 @@ strong {
     }
 }
 
+.biografia {
+    padding: 0 5rem;
+
+    @media #{$mq-tablet-h} {
+        padding: 0 2rem;
+    }
+}
+
 .show-mobile {
     display: none;
 

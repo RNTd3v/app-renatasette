@@ -4,6 +4,7 @@ import { storage } from "../../services/firebase";
 
 export default function UploadFile({ isMedia }) {
   const [image, setImage] = useState("");
+  const [message, setMessage] = useState("");
   const [url, setUrl] = useState("");
   const [sourceImage, setSourceImage] = useState("");
   const [progress, setProgress] = useState(0);
@@ -12,6 +13,10 @@ export default function UploadFile({ isMedia }) {
   function handleChange(e) {
     if (e.target.files[0]) {
       const image = e.target.files[0];
+      if (image.size > 1000000) {
+        setMessage("A imagem não pode ter mais que 1MB");
+        return;
+      }
       setImage(image);
       const reader = new FileReader();
       reader.addEventListener("load", () => {
@@ -46,6 +51,9 @@ export default function UploadFile({ isMedia }) {
             setUrl(url);
             setSourceImage(null);
             setImage(null);
+            setMessage(
+              "A imagem foi salva e estará no trabalho após clicar no botão abaixo"
+            );
             isMedia
               ? client.writeData({ data: { urlMedia: url } })
               : client.writeData({ data: { capaWork: url } });
@@ -70,11 +78,7 @@ export default function UploadFile({ isMedia }) {
       {image ? (
         <button onClick={handleUpload}>Salvar essa foto</button>
       ) : (
-        <p className="message">
-          {url
-            ? "A imagem foi salva e estará no trabalho após clicar no botão abaixo"
-            : ""}
-        </p>
+        <p className="message">{message}</p>
       )}
     </div>
   );

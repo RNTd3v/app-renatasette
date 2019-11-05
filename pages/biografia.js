@@ -34,15 +34,15 @@ export default withData(_ => {
     return (
       <>
         <Head>
-          <title>Renata Sette - Bio</title>
+          <title>Renata Sette - Biografia</title>
         </Head>
         <section>
-          <Header language="en" pagePT="/biografia" pageEN="/bio" />
+          <Header language="pt" pagePT="/biografia" pageEN="/bio" />
           <main className="content project-list">
-            <h1 className="title">Bio</h1>
-            <SanitizedHTML html={bio.contentEN} className="biografia" />
+            <h1 className="title">Biografia</h1>
+            <SanitizedHTML html={bio.contentPT} className="biografia" />
           </main>
-          <Footer language="en" />
+          <Footer language="pt" />
         </section>
       </>
     );

@@ -19,6 +19,7 @@ import Slider from "../src/components/Slider";
 import Footer from "../src/components/Footer";
 
 const IndexPage = ({ isMobile }) => {
+  console.log(isMobile);
   return (
     <>
       <Head>

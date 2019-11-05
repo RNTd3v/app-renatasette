@@ -28,6 +28,13 @@ const IndexAdminPage = ({ userName }) => {
             <i className="fas fa-folder-open icon"></i>
             <h2 className="title">Projetos</h2>
           </div>
+          <div
+            className="item"
+            onClick={() => Router.push(`/admin/banner`)}
+          >
+            <i className="far fa-images icon"></i>
+            <h2 className="title">Banner</h2>
+          </div>
           <div className="item" onClick={() => Router.push(`/admin/bio`)}>
             <i className="fas fa-user-circle icon"></i>
             <h2 className="title">Bio</h2>

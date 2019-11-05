@@ -9,7 +9,7 @@ import gql from "graphql-tag";
 import Loading from "../Loading";
 
 const GET_WORKS_BY_CATEGORYID = gql`
-  query worksByCategoryAuthh($categoryID: ID!) {
+  query worksByCategoryAuth($categoryID: ID!) {
     worksByCategoryAuth(categoryID: $categoryID) {
       id
       namePT
