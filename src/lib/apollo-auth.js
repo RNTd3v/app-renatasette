@@ -152,7 +152,7 @@ function createApolloClient(initialState = {}, { getToken }) {
   }
 
   const httpLink = new HttpLink({
-    uri: "http://localhost:4004/", // Server URL (must be absolute)
+    uri: "https://api.renatasette.com/", // Server URL (must be absolute)
     credentials: "same-origin",
     fetch,
     fetchOptions

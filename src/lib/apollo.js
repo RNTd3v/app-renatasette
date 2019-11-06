@@ -3,7 +3,7 @@ import { HttpLink } from "apollo-boost";
 
 const config = {
   link: new HttpLink({
-    uri: "http://localhost:4004/",
+    uri: "https://api.renatasette.com/",
     opts: {
       credentials: "same-origin" // Additional fetch() options like `credentials` or `headers`
     }
