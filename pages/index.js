@@ -31,16 +31,17 @@ const IndexPage = ({ isMobile }) => {
         <meta property="og:title" content="Renata Sette" />
       </Head>
       <section>
+        {/*
         <div className="emBreve">
           <Logo isMobile={false} language={null} />
           Em Breve</div>
-        {/*
+        */}
         <Header language="en" pagePT="/principal" pageEN="/" />
         <main className="content">
           <Slider language="en" />
           <Categories language="en" isMobile={isMobile} />
         </main>
-        <Footer language="en" />*/}
+        <Footer language="en" />
       </section>
     </>
   );
