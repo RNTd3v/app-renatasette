@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
 import FsLightbox from "fslightbox-react";
 import Vimeo from "@u-wave/react-vimeo";
+import SanitizedHTML from "react-sanitized-html";
 
 import Loading from "../Loading";
 
@@ -20,6 +21,8 @@ const GET_MEDIA_FROM_WORK = gql`
 `;
 
 export default function WorkMedias({ work, language }) {
+  const [wPlayVimeoTop, setwPlayVimeoTop] = useState(860);
+  const [wPlayVimeoGallery, setwPlayVimeoGallery] = useState(400);
   const { data, loading, error } = useQuery(GET_MEDIA_FROM_WORK, {
     variables: { workID: work.id }
   });
@@ -27,31 +30,38 @@ export default function WorkMedias({ work, language }) {
     toggler: false,
     slide: 1
   });
+
+  const galleryRef = useRef();
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && galleryRef.current) {
+      const wGallery = galleryRef.current.offsetWidth;
+      setwPlayVimeoTop(wGallery);
+      if (window.outerWidth > 600) {
+        setwPlayVimeoGallery(wGallery / 2 - 10);
+      } else {
+        setwPlayVimeoGallery(wGallery);
+      }
+    }
+  }, []);
+
   if (loading) return <Loading />;
   if (error) return <p>ERROR: {error.message}</p>;
   if (data && data.mediasByWork && data.mediasByWork.length > 0) {
     const medias = data.mediasByWork;
     if (medias.length > 0) {
-      console.log(medias);
       const video = medias[0];
 
-      const oddMedias = medias.filter((w, i) => i % 2 === 0).slice(1);
-      const evenMedias = medias.filter((w, i) => i % 2 === 1);
+      let oddMedias = medias.filter((w, i) => i % 2 === 0);
+      let evenMedias = medias.filter((w, i) => i % 2 === 1);
 
-      let wPlayVimeoTop = 860;
-      let wPlayVimeoGallery = 400;
+      if(oddMedias.length <= 1) {
+        oddMedias = oddMedias.slice(1)
+      }
 
-      // Setando a largura do iframe do player video na galeria
-      if (typeof window !== "undefined") {
-        const gallery = document.getElementsByClassName("gallery");
-        console.log(gallery);
-        /*const wGallery = gallery[0].offsetWidth;
-      wPlayVimeoTop = wGallery;
-      if (window.outerWidth > 600) {
-        wPlayVimeoGallery = wGallery / 2 - 10;
-      } else {
-        wPlayVimeoGallery = wGallery;
-      }*/
+      if(evenMedias.length === 1) {
+        oddMedias = evenMedias
+        evenMedias = []
       }
 
       const onlyMedias = medias
@@ -84,11 +94,12 @@ export default function WorkMedias({ work, language }) {
               showTitle={false}
               showPortrait={false}
             />
-            <p className="text">
-              {language === "en" ? work.descriptionEN : work.descriptionPT}
-            </p>
+            <SanitizedHTML
+              html={language === "en" ? work.descriptionEN : work.descriptionPT}
+              className="text"
+            />
           </div>
-          <div className="gallery">
+          <div className="gallery" ref={galleryRef}>
             <div className="col-left">
               {oddMedias.map((m, i) => (
                 <div className="work" key={i}>
@@ -102,8 +113,8 @@ export default function WorkMedias({ work, language }) {
                     />
                   ) : (
                     /*<a onClick={() => openLightboxOnSlide(m)}>
-                      <img src={m.url} />
-                  </a>*/
+                        <img src={m.url} />
+                    </a>*/
                     <img src={m.url} />
                   )}
                 </div>
@@ -122,8 +133,8 @@ export default function WorkMedias({ work, language }) {
                     />
                   ) : (
                     /*<a onClick={() => openLightboxOnSlide(m)}>
-                      <img src={m.url} />
-                  </a>*/
+                        <img src={m.url} />
+                    </a>*/
                     <img src={m.url} />
                   )}
                 </div>

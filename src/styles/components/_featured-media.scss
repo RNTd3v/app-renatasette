@@ -52,6 +52,11 @@
     z-index: 1;
     bottom: 5rem;
     left: 5rem;
+    width: 60%;
+
+    @media #{$mq-tablet} {
+      width: 100%;
+    }
 
     @media #{$mq-mobile-h} {
       bottom: 2rem;

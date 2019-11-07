@@ -8,9 +8,14 @@ import { useRouter } from "next/router";
 import "../../src/styles/main.scss";
 
 import Head from "next/head";
+import dynamic from "next/dynamic";
 
-import Header from "../../src/components/Header";
-import WorkMedias from "../../src/components/WorkMedias";
+const Header = dynamic(() => import("../../src/components/Header"), {
+  ssr: false
+});
+const WorkMedias = dynamic(() => import("../../src/components/WorkMedias"), {
+  ssr: false
+});
 import Loading from "../../src/components/Loading";
 import Footer from "../../src/components/Footer";
 
@@ -34,7 +39,6 @@ export default withData(_ => {
   const { data, loading, error } = useQuery(GET_WORK_FROM_CODE, {
     variables: { codeEN: workCode }
   });
-  console.log(data);
   if (loading) return <Loading />;
   if (error) return <p>ERROR: {error.message}</p>;
   if (data && data.workByCodeEN) {

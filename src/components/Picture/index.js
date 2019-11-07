@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import SanitizedHTML from "react-sanitized-html";
 
 const Picture = ({ src, link, text, title }) => {
   return (
@@ -9,7 +10,7 @@ const Picture = ({ src, link, text, title }) => {
         <figcaption>
           <div className="textWrapper">
             <h2 className="title">{title}</h2>
-            <p className="text">{text}</p>
+            <SanitizedHTML html={text} className="text" />
           </div>
         </figcaption>
       </figure>

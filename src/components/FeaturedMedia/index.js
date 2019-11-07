@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import SanitizedHTML from "react-sanitized-html";
 
 export default function FeaturedMedia({ language, work, category }) {
   return (
@@ -12,7 +13,7 @@ export default function FeaturedMedia({ language, work, category }) {
               <h1 className="title">{category.categoryName}</h1>
               <i className="far fa-play-circle"></i>
             </div>
-            <p className="text">{work.descriptionEN}</p>
+            <SanitizedHTML html={work.descriptionEN} className="text" />
           </div>
         </Link>
       ) : (
@@ -23,7 +24,7 @@ export default function FeaturedMedia({ language, work, category }) {
               <h1 className="title">{category.categoryName}</h1>
               <i className="far fa-play-circle"></i>
             </div>
-            <p className="text">{work.descriptionPT}</p>
+            <SanitizedHTML html={work.descriptionEN} className="text" />
           </div>
         </Link>
       )}
