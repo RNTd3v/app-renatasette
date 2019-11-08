@@ -38,7 +38,6 @@ export default withData(_ => {
   if (error) return <p>ERROR: {error.message}</p>;
   if (data && data.projectByCodePT) {
     const project = data.projectByCodePT;
-    console.log(project);
     return (
       <div>
         <Head>
@@ -56,9 +55,10 @@ export default withData(_ => {
             pageEN="/project/[projectCode]"
             asEN={`/project/${project.codeEN}`}
             isDynamic={true}
+            bgHeaderDark={true}
           />
           <main className="content work-detail">
-            {/*<WorkMedias work={project} language="pt" />*/}
+            <WorkMedias work={project} language="pt" />
           </main>
           <Footer language="pt" />
         </section>

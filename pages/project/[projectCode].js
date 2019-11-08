@@ -34,12 +34,10 @@ export default withData(_ => {
   const { data, loading, error } = useQuery(GET_PROJECT_FROM_CODE, {
     variables: { codeEN: projectCode }
   });
-  console.log(data);
   if (loading) return <Loading />;
   if (error) return <p>ERROR: {error.message}</p>;
   if (data && data.projectByCodeEN) {
     const project = data.projectByCodeEN;
-
     return (
       <div>
         <Head>
@@ -57,6 +55,7 @@ export default withData(_ => {
             pageEN="/project/[projectCode]"
             asEN={`/project/${project.codeEN}`}
             isDynamic={true}
+            bgHeaderDark={true}
           />
           <main className="content work-detail">
             <WorkMedias work={project} language="en" />

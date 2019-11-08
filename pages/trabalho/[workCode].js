@@ -34,7 +34,6 @@ export default withData(_ => {
   const { data, loading, error } = useQuery(GET_WORK_FROM_CODE, {
     variables: { codePT: workCode }
   });
-  console.log(data);
   if (loading) return <Loading />;
   if (error) return <p>ERROR: {error.message}</p>;
   if (data && data.workByCodePT) {
@@ -57,6 +56,7 @@ export default withData(_ => {
             pageEN="/work/[workCode]"
             asEN={`/work/${work.codeEN}`}
             isDynamic={true}
+            bgHeaderDark={true}
           />
           <main className="content work-detail">
             <WorkMedias work={work} language="pt" />

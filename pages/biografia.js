@@ -37,7 +37,7 @@ export default withData(_ => {
           <title>Renata Sette - Biografia</title>
         </Head>
         <section>
-          <Header language="pt" pagePT="/biografia" pageEN="/bio" />
+          <Header language="pt" pagePT="/biografia" pageEN="/bio" bgHeaderDark={true} />
           <main className="content project-list">
             <h1 className="title">Biografia</h1>
             <SanitizedHTML html={bio.contentPT} className="biografia" />

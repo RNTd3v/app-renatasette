@@ -61,6 +61,7 @@ export default withData(_ => {
             pageEN="/work/[workCode]"
             asEN={`/work/${work.codeEN}`}
             isDynamic={true}
+            bgHeaderDark={true}
           />
           <main className="content work-detail">
             <WorkMedias work={work} language="en" />

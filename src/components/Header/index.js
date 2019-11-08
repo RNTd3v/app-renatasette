@@ -8,11 +8,11 @@ import Language from "../Language";
 import MenuMobile from "../MenuMobile";
 
 export default function Header(props) {
-  const [scrolled, setScrolled] = useState(false);
+  const [bgHeaderChange, setBgHeaderChange] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   function handleScroll(e) {
-    setScrolled(e.currentTarget.pageYOffset > window.outerHeight);
+    setBgHeaderChange(e.currentTarget.pageYOffset > window.outerHeight);
   }
 
   function checkIsMobile() {
@@ -21,6 +21,14 @@ export default function Header(props) {
 
   useEffect(() => {
     checkIsMobile();
+    if(props.bgHeaderDark) {
+      setBgHeaderChange(true);
+      return
+    }
+    if(isMobile) {
+      setBgHeaderChange(true);
+      return
+    }
     window.addEventListener("scroll", e => handleScroll(e));
     return () => {
       window.removeEventListener("scroll", e => handleScroll(e));
@@ -30,7 +38,7 @@ export default function Header(props) {
   const { language, pagePT, pageEN, isDynamic = null, asPT, asEN } = props;
 
   return (
-    <header className={`header ${scrolled ? "-scrolled" : ""}`}>
+    <header className={`header ${bgHeaderChange ? "-scrolled" : ""}`}>
       {isMobile ? <MenuMobile /> : null}
       <Logo isMobile={isMobile} language={language} />
       {!isMobile ? <Navigation language={language} /> : null}

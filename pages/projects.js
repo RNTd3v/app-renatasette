@@ -16,7 +16,7 @@ export default withData(_ => {
         <title>Renata Sette - Projects</title>
       </Head>
       <section>
-        <Header language="en" pagePT="/projetos" pageEN="/projects" />
+        <Header language="en" pagePT="/projetos" pageEN="/projects" bgHeaderDark={true} />
         <main className="content project-list">
           <h1 className="title">Projects</h1>
           <Project language="en" />
