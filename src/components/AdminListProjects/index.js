@@ -6,29 +6,29 @@ import Link from "next/link";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
-const DELETE_WORK = gql`
-  mutation deleteWork($id: String!) {
-    deleteWork(id: $id) {
+const DELETE_PROJECT = gql`
+  mutation deleteProject($id: String!) {
+    deleteProject(id: $id) {
       id
     }
   }
 `;
 
-const UPDATE_ORDER_WORK = gql`
-  mutation updateOrderWork($id: String!, $order_by: Float) {
-    updateOrderWork(id: $id, order_by: $order_by) {
+const UPDATE_ORDER_PROJECT = gql`
+  mutation updateOrderProject($id: String!, $order_by: Float) {
+    updateOrderProject(id: $id, order_by: $order_by) {
       id
       namePT
     }
   }
 `;
 
-const AdminListWorks = ({ works }) => {
-  const [deleteWork, setDeleteWork] = useState(null);
+const AdminListProjects = ({ projects }) => {
+  const [deleteProject, setDeleteProject] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [changeTheOrder, setChangeTheOrder] = useState(false);
-  const [listWorks, setListWorks] = useState([]);
-  const [draggedWork, setDraggedWork] = useState({});
+  const [listProjects, setListProjects] = useState([]);
+  const [draggedProject, setDraggedProject] = useState({});
   const [draggedIdx, setDraggedIdx] = useState(null);
 
   const onOpenModal = () => {
@@ -39,22 +39,10 @@ const AdminListWorks = ({ works }) => {
     setOpenModal(false);
   };
 
-  const saveOrderWork = () => {
-    setChangeTheOrder(false);
-    listWorks.forEach((work, index) => {
-      updateOrderWorks({
-        variables: {
-          id: work.id,
-          order_by: index
-        }
-      });
-    });
-  };
-
   const onCompleted = resposta => {
-    if (resposta.deleteWork.id || resposta.updateOrderWork) {
+    if (resposta.deleteProject.id || resposta.updateOrderProject) {
       setOpenModal(false);
-      Router.push(`/admin/categorias/${work.categoryID}`);
+      Router.push(`/admin/projects`);
     }
   };
 
@@ -62,27 +50,39 @@ const AdminListWorks = ({ works }) => {
     console.error(error);
   };
 
+  const saveOrderProject = () => {
+    setChangeTheOrder(false);
+    listProjects.forEach((project, index) => {
+      updateOrderProjects({
+        variables: {
+          id: project.id,
+          order_by: index
+        }
+      });
+    });
+  };
+
   const onDragStart = (e, index) => {
-    setDraggedWork(listWorks[index]);
+    setDraggedProject(listProjects[index]);
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("text/html", e.target.parentNode);
     e.dataTransfer.setDragImage(e.target.parentNode, 20, 20);
   };
 
   const onDragOver = index => {
-    const draggedOverWork = listWorks[index];
+    const draggedOverProject = listProjects[index];
     // if the item is dragged over itself, ignore
-    if (draggedWork === draggedOverWork) {
+    if (draggedProject === draggedOverProject) {
       return;
     }
 
     // filter out the currently dragged item
-    let works = listWorks.filter(work => work !== draggedWork);
+    let projects = listProjects.filter(project => project !== draggedProject);
 
     // add the dragged item after the dragged over item
-    works.splice(index, 0, draggedWork);
+    projects.splice(index, 0, draggedProject);
 
-    setListWorks(works);
+    setListProjects(projects);
     setChangeTheOrder(true);
   };
 
@@ -90,27 +90,25 @@ const AdminListWorks = ({ works }) => {
     setDraggedIdx(null);
   };
 
-  const goMedias = (categoryID, workID, workName) => {
-    Router.push(
-      `/admin/categorias/${categoryID}/trabalho/${workID}/${workName}/medias`
-    );
+  const goMedias = (projectID, projectName) => {
+    Router.push(`/admin/projects/${projectID}/${projectName}/medias`);
   };
 
-  const [deleteConfirmWork] = useMutation(DELETE_WORK, {
+  const [deleteConfirmProject] = useMutation(DELETE_PROJECT, {
     onCompleted,
     onError
   });
 
-  const [updateOrderWorks] = useMutation(UPDATE_ORDER_WORK, {
+  const [updateOrderProjects] = useMutation(UPDATE_ORDER_PROJECT, {
     onCompleted,
     onError
   });
 
   useEffect(() => {
-    if (works) {
-      setListWorks(works);
+    if (projects) {
+      setListProjects(projects);
     }
-  }, [works]);
+  }, [projects]);
 
   return (
     <>
@@ -120,9 +118,9 @@ const AdminListWorks = ({ works }) => {
           <div className="col -flex">Nome</div>
           <div className="col -act">Ação</div>
         </li>
-        {listWorks.map((work, i) => (
+        {listProjects.map((project, i) => (
           <li className="row" key={i} onDragOver={() => onDragOver(i)}>
-            {listWorks.length > 1 ? (
+            {listProjects.length > 1 ? (
               <i
                 className="fas fa-bars icon"
                 draggable
@@ -131,14 +129,14 @@ const AdminListWorks = ({ works }) => {
               ></i>
             ) : null}
             <div className="col -img">
-              <img src={work.picture} className="picture" />
+              <img src={project.picture} className="picture" />
             </div>
-            <div className="col -flex">{work.namePT}</div>
+            <div className="col -flex">{project.namePT}</div>
             <div className="col -act">
               <div className="icon -editar action">
                 <Link
-                  href="/admin/categorias/[categoryID]/trabalho/[workID]"
-                  as={`/admin/categorias/${work.categoryID}/trabalho/${work.id}`}
+                  href="/admin/projects/[projectID]"
+                  as={`/admin/projects/${project.id}`}
                 >
                   <a>
                     <i className="far fa-edit icon"></i>
@@ -149,7 +147,7 @@ const AdminListWorks = ({ works }) => {
               <div
                 className="icon -delete  action"
                 onClick={() => {
-                  setDeleteWork(work.id);
+                  setDeleteProject(project.id);
                   setOpenModal(true);
                 }}
               >
@@ -159,7 +157,7 @@ const AdminListWorks = ({ works }) => {
               <div
                 className="icon -medias action"
                 onClick={() => {
-                  goMedias(work.categoryID, work.id, work.namePT);
+                  goMedias(project.id, project.namePT);
                 }}
               >
                 <i class="fas fa-images icon"></i>
@@ -169,25 +167,25 @@ const AdminListWorks = ({ works }) => {
           </li>
         ))}
       </ul>
-      {listWorks.length > 1 ? (
+      {listProjects.length > 1 ? (
         <button
           className={`button -center ${!changeTheOrder ? "-disabled" : ""}`}
           disabled={!changeTheOrder}
-          onClick={() => saveOrderWork()}
+          onClick={() => saveOrderProject()}
         >
           Salvar a ordem
         </button>
       ) : null}
       <Modal open={openModal} onClose={onCloseModal} center>
         <p className="text-modal">
-          Você tem certeza que deseja excluir este trabalho?
+          Você tem certeza que deseja excluir este projeto?
         </p>
         <button
           className="button-modal"
           onClick={() => {
-            deleteConfirmWork({
+            deleteConfirmProject({
               variables: {
-                id: deleteWork
+                id: deleteProject
               }
             });
           }}
@@ -199,4 +197,4 @@ const AdminListWorks = ({ works }) => {
   );
 };
 
-export default AdminListWorks;
+export default AdminListProjects;

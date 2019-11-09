@@ -17,6 +17,7 @@ const GET_PROJECTS = gql`
       descriptionEN
       picture
       id
+      order_by
     }
   }
 `;
@@ -24,7 +25,7 @@ const GET_PROJECTS = gql`
 export default function Project({ language }) {
   const { loading, error, data, fetchMore } = useQuery(GET_PROJECTS);
   if (data && data.projects) {
-    const projects = data.projects;
+    const projects = data.projects.sort((a, b) => a.order_by - b.order_by);
     return (
       <div className="list">
         {projects.map((p, i) => (
