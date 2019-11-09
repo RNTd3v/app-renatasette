@@ -19,6 +19,7 @@ const GET_WORKS_FROM_A_CATEGORY = gql`
       descriptionEN
       picture
       id
+      order_by
     }
   }
 `;
@@ -38,8 +39,9 @@ export default function WorksFromCategory({
   if (loading) return <Loading />;
   if (error) return <p>ERROR: {error.message}</p>;
   if (data && data.worksByCategory) {
-    const work = data.worksByCategory[0];
-    const works = data.worksByCategory.slice(1);
+    const worksOrder = data.worksByCategory.sort((a, b) => a.order_by - b.order_by);
+    const work = worksOrder[0];
+    const works = worksOrder.slice(1);
     return (
       <>
         <FeaturedMedia language={language} work={work} category={category} />
