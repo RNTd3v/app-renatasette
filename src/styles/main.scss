@@ -68,6 +68,26 @@ strong {
     }
 }
 
+.bio {
+    display: flex;
+    justify-content: space-between;
+    @media #{$mq-tablet} {
+        flex-direction: column-reverse;
+
+    }
+    img {
+        padding: 0 2rem;
+        width: 30rem;
+        @media #{$mq-tablet-h} {
+            width: 20rem;
+        }
+        @media #{$mq-tablet} {
+            width: 100%;
+            padding: 2rem;
+        }
+    }
+}
+
 .biografia {
     padding: 0 5rem;
 

@@ -21,6 +21,7 @@ const GET_BIO = gql`
       titleEN
       contentPT
       contentEN
+      picture
     }
   }
 `;
@@ -40,7 +41,10 @@ export default withData(_ => {
           <Header language="pt" pagePT="/biografia" pageEN="/bio" bgHeaderDark={true} />
           <main className="content project-list">
             <h1 className="title">Biografia</h1>
-            <SanitizedHTML html={bio.contentPT} className="biografia" />
+            <div className="bio">
+              <SanitizedHTML html={bio.contentPT} className="biografia" />
+              <img src={bio.picture} />
+            </div>
           </main>
           <Footer language="pt" />
         </section>

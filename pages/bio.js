@@ -40,7 +40,10 @@ export default withData(_ => {
           <Header language="en" pagePT="/biografia" pageEN="/bio" bgHeaderDark={true} />
           <main className="content project-list">
             <h1 className="title">Bio</h1>
-            <SanitizedHTML html={bio.contentEN} className="biografia" />
+            <div className="bio">
+              <SanitizedHTML html={bio.contentEN} className="biografia" />
+              <img src={bio.picture} />
+            </div>
           </main>
           <Footer language="en" />
         </section>
