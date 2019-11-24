@@ -15,7 +15,7 @@ const LoginAdminPage = () => {
   return (
     <>
       <Head>
-        <title>Renata Sette | Admin</title>
+        <title>Admin | Renata Sette</title>
         <meta name="description" content="Website Renata Sette" />
         <meta property="og:image" content="" />
         <meta property="og:description" content="" />
