@@ -10,7 +10,7 @@ const Picture = ({ src, link, text, title }) => {
         <figcaption>
           <div className="textWrapper">
             <h2 className="title">{title}</h2>
-            <SanitizedHTML html={text} className="text" />
+            {/*<SanitizedHTML html={text} className="text" />*/}
           </div>
         </figcaption>
       </figure>

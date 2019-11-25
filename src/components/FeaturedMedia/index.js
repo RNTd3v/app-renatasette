@@ -13,7 +13,7 @@ export default function FeaturedMedia({ language, work, category }) {
               <h1 className="title">{category.categoryName}</h1>
               <i className="far fa-play-circle"></i>
             </div>
-            <SanitizedHTML html={work.descriptionEN} className="text" />
+            {/*<SanitizedHTML html={work.descriptionEN} className="text" />*/}
           </div>
         </Link>
       ) : (

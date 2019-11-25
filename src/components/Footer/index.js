@@ -29,7 +29,7 @@ export default function Footer({ language }) {
     return (
       <footer className="footer">
         <div className="contacts">
-          <div className="item -address">
+          {/*<div className="item -address">
             <h2 className="title">
               {language === "en" ? "Address" : "Endereço"}
             </h2>
@@ -37,7 +37,7 @@ export default function Footer({ language }) {
               {contact.street}, {contact.number} - {contact.district} -{" "}
               {contact.city}/{contact.state} - {contact.cep}
             </p>
-          </div>
+          </div>*/}
           <div className="item -address">
             <h2 className="title">E-mail</h2>
             <a href={`mailto:${contact.email}`} className="link">

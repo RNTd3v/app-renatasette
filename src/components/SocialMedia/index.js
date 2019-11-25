@@ -20,15 +20,18 @@ export default function SocialMedia() {
     return (
       <div className="socialmedia">
         {data.socialMedia.map((s, i) => (
-          <a
-            className="item"
-            href={s.url}
-            target="_blank"
-            title={`Renata Sette - ${s.name}`}
-            key={i}
-          >
-            <i className={s.icon}></i>
-          </a>
+          <span key={i}>
+            {s.url ? (
+              <a
+                className="item"
+                href={s.url}
+                target="_blank"
+                title={`Renata Sette - ${s.name}`}
+              >
+                <i className={s.icon}></i>
+              </a>
+            ) : null}{" "}
+          </span>
         ))}
       </div>
     );
