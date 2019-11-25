@@ -21,6 +21,7 @@ const GET_BIO = gql`
       titleEN
       contentPT
       contentEN
+      picture
     }
   }
 `;
@@ -31,6 +32,7 @@ export default withData(_ => {
   if (error) return <p>ERROR: {error.message}</p>;
   if (data && data.bios) {
     const bio = data.bios[0];
+    console.log(data.bios);
     return (
       <>
         <Head>
@@ -42,7 +44,7 @@ export default withData(_ => {
             <h1 className="title">Bio</h1>
             <div className="bio">
               <SanitizedHTML html={bio.contentEN} className="biografia" />
-              <img src={bio.picture} />
+              <img src="https://firebasestorage.googleapis.com/v0/b/apprenatasette-1567104791521.appspot.com/o/images%2FFOTO%20RENATA.jpg?alt=media&token=47812d28-f1a2-49bb-baa6-2edb1f417627" />
             </div>
           </main>
           <Footer language="en" />

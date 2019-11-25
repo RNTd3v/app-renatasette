@@ -71,13 +71,17 @@ strong {
 .bio {
     display: flex;
     justify-content: space-between;
+    padding: 0 5rem;
+    align-items: flex-start;
     @media #{$mq-tablet} {
         flex-direction: column-reverse;
+        padding: 0 1rem;
 
     }
     img {
         padding: 0 2rem;
         width: 30rem;
+        flex-shrink: 0;
         @media #{$mq-tablet-h} {
             width: 20rem;
         }
