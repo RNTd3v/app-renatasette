@@ -86,8 +86,9 @@ strong {
             width: 20rem;
         }
         @media #{$mq-tablet} {
-            width: 100%;
-            padding: 2rem;
+            width: auto;
+            height: 20rem;
+            margin: 0 auto 2rem;
         }
     }
 }
