@@ -2,6 +2,15 @@ import gql from "graphql-tag";
 import cookie from "cookie";
 
 export default function loggedInUser(context) {
+
+  if(context.res) {
+    context.res.setHeader('Set-Cookie', cookie.serialize('name', 'renata-sette', {
+      maxAge: 60 * 60 * 24 * 7, // 1 week
+      sameSite: 'none',
+      segure: true
+    }));
+  }
+
   const cookies = cookie.parse(
     context.req ? context.req.headers.cookie || "" : document.cookie
   );
