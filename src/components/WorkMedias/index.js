@@ -21,6 +21,7 @@ const GET_MEDIA_FROM_WORK = gql`
 
 export default function WorkMedias({ work, language }) {
   const [wPlayVimeoTop, setwPlayVimeoTop] = useState(1000);
+  const [wPlayVimeoGallery, setwPlayVimeoGallery] = useState(500);
   const { data, loading, error } = useQuery(GET_MEDIA_FROM_WORK, {
     variables: { workID: work.id }
   });

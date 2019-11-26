@@ -92,4 +92,8 @@
       }
     }
   }
+
+  @media #{$mq-mobile} {
+    display: none;
+  }
 }

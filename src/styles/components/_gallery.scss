@@ -14,6 +14,10 @@
     padding: 2rem 0 0;
   }
 
+  @media #{$mq-mobile-h} {
+    padding-top: 5rem;
+  }
+
   .col-left,
   .col-right {
     width: 50%;
@@ -48,6 +52,15 @@
 
   .col-left {
     padding-right: 10px;
+    > .work {
+      &:first-child {
+        display: none;
+        @media #{$mq-mobile-h} {
+          display: block;
+        }
+      }
+    }
+    
   }
 
   .col-right {

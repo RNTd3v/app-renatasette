@@ -7,6 +7,9 @@
   @media #{$mq-tablet} {
     height: 50vh;
   }
+  @media #{$mq-mobile-h} {
+    display: none;
+  }
 
   >.image {
     width: 100%;
@@ -34,6 +37,10 @@
       margin-top: -3rem;
       position: relative;
       padding-bottom: 1rem;
+      @media #{$mq-tablet} {
+        font-size: 1.2rem;
+        margin-top: -18rem;
+      }
 
       &:before {
         content: '';

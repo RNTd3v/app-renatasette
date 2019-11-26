@@ -41,7 +41,7 @@ export default function WorksFromCategory({
   if (data && data.worksByCategory) {
     const worksOrder = data.worksByCategory.sort((a, b) => a.order_by - b.order_by);
     const work = worksOrder[0];
-    const works = worksOrder.slice(1);
+    const works = worksOrder;
     return (
       <>
         <FeaturedMedia language={language} work={work} category={category} />
