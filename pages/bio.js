@@ -44,7 +44,7 @@ export default withData(_ => {
             <h1 className="title">Bio</h1>
             <div className="bio">
               <SanitizedHTML html={bio.contentEN} className="biografia" />
-              <img src="https://firebasestorage.googleapis.com/v0/b/apprenatasette-1567104791521.appspot.com/o/images%2FFOTO%20RENATA.jpg?alt=media&token=47812d28-f1a2-49bb-baa6-2edb1f417627" />
+              <img src={bio.picture} />
             </div>
           </main>
           <Footer language="en" />
