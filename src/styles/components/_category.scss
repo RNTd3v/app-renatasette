@@ -9,13 +9,6 @@
     padding: 3rem 0;
   }
 
-  &:nth-child(2) {
-    @media #{$mq-mobile} {
-      padding-top: 5rem;
-    }
-  }
-
-
   >.title {
     padding-bottom: 5rem;
     text-align: center;

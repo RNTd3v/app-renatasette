@@ -12,6 +12,9 @@ class Logo extends Component {
               <span>
                 Renata <strong>Sette</strong>
               </span>
+              <small>
+                Director
+              </small>
             </a>
           </Link>
         ) : (
@@ -20,6 +23,9 @@ class Logo extends Component {
               <span>
                 Renata <strong>Sette</strong>
               </span>
+              <small>
+                Diretora
+              </small>
             </a>
           </Link>
         )}
